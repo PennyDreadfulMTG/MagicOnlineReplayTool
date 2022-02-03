@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="MtgoReplayToolWpf.DataGridViews.DataGridMatchup"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MtgoReplayToolWpf.DataGridViews"
+      xmlns:daViewModels="clr-namespace:MtgoReplayToolWpf.DataGridViewModels"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800">
+
+    <DataGrid ItemsSource="{Binding DataView}" AutoGenerateColumns="False" AlternationCount="2" AlternatingRowBackground="#E3E3E3">
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="Card" Width="Auto" IsReadOnly="True" Binding="{Binding Path=Name}" />
+            <DataGridTextColumn Header="Game Win %" Width="Auto" IsReadOnly="True" Binding="{Binding Path=GameWin, StringFormat=N2}" />
+            <DataGridTextColumn Header="Games" Width="Auto" IsReadOnly="True" Binding="{Binding Path=Games}" />
+            <DataGridTextColumn Header="Games Won" Width="Auto" IsReadOnly="True" Binding="{Binding Path=GamesWon}" />
+            <DataGridTextColumn Header="Correlation" Width="Auto" IsReadOnly="True" Binding="{Binding Path=Correlation,  StringFormat=N2}" />
+        </DataGrid.Columns>
+    </DataGrid>
+</UserControl>

@@ -1,0 +1,662 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E096AB3F-14FD-4C7A-8657-C9732CA93816}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>MtgTop8Crawler</RootNamespace>
+    <AssemblyName>MtgTop8Crawler</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="bin\Debug\decks\Block\0A24249A97A163D9E531C1C55B4865F0.dec" />
+    <None Include="bin\Debug\decks\Block\0F3AEAB52E6C96EF40DEEF474DD72072.dec" />
+    <None Include="bin\Debug\decks\Block\1D0F9E5FEE41854FF72220395DEFDF88.dec" />
+    <None Include="bin\Debug\decks\Block\27405D76144115440E7FDE5729D200D6.dec" />
+    <None Include="bin\Debug\decks\Block\2B5A5273966B99FA931E8ACAF9FAC0F8.dec" />
+    <None Include="bin\Debug\decks\Block\2F1870073E58A23CE15744FB36CC9D85.dec" />
+    <None Include="bin\Debug\decks\Block\374E21340EE8CE64D4141DFC51EDED01.dec" />
+    <None Include="bin\Debug\decks\Block\37B3C6D6FF51BF17A470E08C16766BAA.dec" />
+    <None Include="bin\Debug\decks\Block\393767BAA32470346245E8EBCA32AE67.dec" />
+    <None Include="bin\Debug\decks\Block\42BF36C98264463D1BC98C9358ED6525.dec" />
+    <None Include="bin\Debug\decks\Block\50BC8470EFB566B23A0826DDA4519260.dec" />
+    <None Include="bin\Debug\decks\Block\65D304D7C7E2D4DC92A89924ECB7D0E9.dec" />
+    <None Include="bin\Debug\decks\Block\65FEE459E2EFB30549A2202725BC78AB.dec" />
+    <None Include="bin\Debug\decks\Block\67C47B5C4C32335859DED467DDD14BAE.dec" />
+    <None Include="bin\Debug\decks\Block\6B483E3FB9D7E9771497BF8463CCEB03.dec" />
+    <None Include="bin\Debug\decks\Block\6BF427557F8B67E8B14830A7C39B15EA.dec" />
+    <None Include="bin\Debug\decks\Block\806457E8FED8D87C77973497B08DE216.dec" />
+    <None Include="bin\Debug\decks\Block\9B191B006E1B69CA5525898FDE308AFF.dec" />
+    <None Include="bin\Debug\decks\Block\9D0A83F335BCD697674F53C2BC2F36AF.dec" />
+    <None Include="bin\Debug\decks\Block\A536254C6D1E4F377E9B099DD5523D61.dec" />
+    <None Include="bin\Debug\decks\Block\A6F4D0BB4FD4CA0ABCB05BDB2D57B3EC.dec" />
+    <None Include="bin\Debug\decks\Block\A85796EEE2E7827D9DE825BC8A81C02C.dec" />
+    <None Include="bin\Debug\decks\Block\ACE4A1946EEE6AFF7448AD49546D5D4B.dec" />
+    <None Include="bin\Debug\decks\Block\B670774F0D7EFEBF1A72F4255573B297.dec" />
+    <None Include="bin\Debug\decks\Block\BDA2123CFA1552C0396F096A22B69917.dec" />
+    <None Include="bin\Debug\decks\Block\BE342019B3C6C71DEACDCB11E2AF20A7.dec" />
+    <None Include="bin\Debug\decks\Block\BF8D3A14B4EAEAABBA31D2B6C71761C9.dec" />
+    <None Include="bin\Debug\decks\Block\DB0EFC7D66A1464C0B5009DD719F3528.dec" />
+    <None Include="bin\Debug\decks\Block\DB103CD1F2162C94C04932641BCFDFF1.dec" />
+    <None Include="bin\Debug\decks\Block\DD04B14FBC561E5042F0498C59F83ADC.dec" />
+    <None Include="bin\Debug\decks\Block\E1B5FE947FC2298D377A620EB099F788.dec" />
+    <None Include="bin\Debug\decks\Block\E1C8AEEBFE7AC1DEE6E758EFDE7361E3.dec" />
+    <None Include="bin\Debug\decks\Block\F3DF573A4A4A27FA677C1E19650592DB.dec" />
+    <None Include="bin\Debug\decks\Duel\007419CCE9951E5AD05C61A8E4029D7E.dec" />
+    <None Include="bin\Debug\decks\Duel\0B2471FD0492071F9E444FD905C8002A.dec" />
+    <None Include="bin\Debug\decks\Duel\0BC9B71444AC112142E872A123CACF32.dec" />
+    <None Include="bin\Debug\decks\Duel\0C3F1BC46F46A730B0280D209481E147.dec" />
+    <None Include="bin\Debug\decks\Duel\0CC03EAA27522BB1D12A9E43EEF456AB.dec" />
+    <None Include="bin\Debug\decks\Duel\0D1E3E37EA8DF8F0DF04A5281BD1446A.dec" />
+    <None Include="bin\Debug\decks\Duel\104AABFDBEB02AF77D46033102922B11.dec" />
+    <None Include="bin\Debug\decks\Duel\1CD1112994253AD24617189280364ABD.dec" />
+    <None Include="bin\Debug\decks\Duel\1DFE7594AB1F09ABF4C1115726C56C49.dec" />
+    <None Include="bin\Debug\decks\Duel\20586020E3E0F4D61722DA71224E5652.dec" />
+    <None Include="bin\Debug\decks\Duel\2165B36ECB5DB47068430FF542685BB8.dec" />
+    <None Include="bin\Debug\decks\Duel\23F60543F91915C0E064298B2C996E5E.dec" />
+    <None Include="bin\Debug\decks\Duel\241BF4D66C8AF4D82C072EF1C18A42EA.dec" />
+    <None Include="bin\Debug\decks\Duel\29878599ED52C3630C8AD8DD26F68A42.dec" />
+    <None Include="bin\Debug\decks\Duel\2A36B8F2C54C6552B4F4DCD709FC68D9.dec" />
+    <None Include="bin\Debug\decks\Duel\2ABB183E8A2E70DFF536313A336B18B2.dec" />
+    <None Include="bin\Debug\decks\Duel\2D47E1A4A14F4237E2519E2F241C8340.dec" />
+    <None Include="bin\Debug\decks\Duel\2F389811F4FDFAE2C06B7205168BAB3E.dec" />
+    <None Include="bin\Debug\decks\Duel\2F837917652FB82AA8EF46DC89E67E5F.dec" />
+    <None Include="bin\Debug\decks\Duel\2FEB954B28A78DF7EB2589FFA757A380.dec" />
+    <None Include="bin\Debug\decks\Duel\3238DCD3AE3CC58C1E0B91D90192B5F1.dec" />
+    <None Include="bin\Debug\decks\Duel\33B4417CBE5364C0F87213419814B419.dec" />
+    <None Include="bin\Debug\decks\Duel\37004F37328CF662010B1F35BB9BF6E6.dec" />
+    <None Include="bin\Debug\decks\Duel\3711BD5A7161660A508AF8AA7513F986.dec" />
+    <None Include="bin\Debug\decks\Duel\39CA732766AA70166CF1CB71E5E73674.dec" />
+    <None Include="bin\Debug\decks\Duel\3D4C7F409CB16C0DE098EE735A099E8B.dec" />
+    <None Include="bin\Debug\decks\Duel\40C0AD4DB6B6FD73F628428478D58562.dec" />
+    <None Include="bin\Debug\decks\Duel\4CF6AFDE528B5B336152798CF8BAE9A0.dec" />
+    <None Include="bin\Debug\decks\Duel\507E010404FFEB304EA4F9388B1C52F0.dec" />
+    <None Include="bin\Debug\decks\Duel\55C015AFAB6ECD4D4607BBA7B9303AE1.dec" />
+    <None Include="bin\Debug\decks\Duel\575A191D486825B2B50DAA1AEDFEF5E0.dec" />
+    <None Include="bin\Debug\decks\Duel\5A51BC794FE16AFFC16BBDA2DC7D77C5.dec" />
+    <None Include="bin\Debug\decks\Duel\5C8DEC8E64EC0D9640C0126050F62BCF.dec" />
+    <None Include="bin\Debug\decks\Duel\5C92133D56E3A3BDBB093C4889991934.dec" />
+    <None Include="bin\Debug\decks\Duel\60A8BD53B5374A6FC66F795682BA0741.dec" />
+    <None Include="bin\Debug\decks\Duel\60D20DA5144E2542EFEA52158804EABF.dec" />
+    <None Include="bin\Debug\decks\Duel\63AB6670AD118B4B7CC71B734E21DFF0.dec" />
+    <None Include="bin\Debug\decks\Duel\6F7CE682138838C3C5DEFAC78FC135BA.dec" />
+    <None Include="bin\Debug\decks\Duel\7AE896D0EA7157AE36BD4D06DF59834D.dec" />
+    <None Include="bin\Debug\decks\Duel\7B521100AF2B86C836FB113112530E63.dec" />
+    <None Include="bin\Debug\decks\Duel\7F4FBDD7982A500464F2EB7F98A4FDE5.dec" />
+    <None Include="bin\Debug\decks\Duel\823025BC95FF431BCAFA2EC8A4C2CB73.dec" />
+    <None Include="bin\Debug\decks\Duel\83046E32D8BC57BE4BA890455237A2DA.dec" />
+    <None Include="bin\Debug\decks\Duel\83D08768FE89BC47415B2E3785C215A1.dec" />
+    <None Include="bin\Debug\decks\Duel\853B88DA42E80E7645AA9974A45AFC95.dec" />
+    <None Include="bin\Debug\decks\Duel\932D8D15012CA5282002EB61D3B0EE08.dec" />
+    <None Include="bin\Debug\decks\Duel\970D32C959A8311828C61CAD01C55C39.dec" />
+    <None Include="bin\Debug\decks\Duel\9852B061AAC250E91E85D4F546D95347.dec" />
+    <None Include="bin\Debug\decks\Duel\992145948F696652C2A1F9D82BFC0781.dec" />
+    <None Include="bin\Debug\decks\Duel\9C91B7942C5EBDBD237FE712FD04D1D2.dec" />
+    <None Include="bin\Debug\decks\Duel\9F5E96513989515AB1DF5E91E774F21D.dec" />
+    <None Include="bin\Debug\decks\Duel\9F969444CAFEFD491FE6924B0DB49A61.dec" />
+    <None Include="bin\Debug\decks\Duel\A205773FC4782CEEF24BF07CA931D6EA.dec" />
+    <None Include="bin\Debug\decks\Duel\A5B725A3D3E6104A3083985CAD9457C6.dec" />
+    <None Include="bin\Debug\decks\Duel\A621335543CB10E8BBB1779FA73B8260.dec" />
+    <None Include="bin\Debug\decks\Duel\A736A83E0B4EF0F5328F5B3D13B490D8.dec" />
+    <None Include="bin\Debug\decks\Duel\A87B5A9C4BAA9DEF0F321254A556C928.dec" />
+    <None Include="bin\Debug\decks\Duel\AB8587AF783080B0AF9812CF683F16BB.dec" />
+    <None Include="bin\Debug\decks\Duel\AC0A64773EB3D8D1098D0BF916C3625B.dec" />
+    <None Include="bin\Debug\decks\Duel\B39CF22E565740B2B335D8FEAF0DF194.dec" />
+    <None Include="bin\Debug\decks\Duel\B590061778EE387BAE0589865A58688B.dec" />
+    <None Include="bin\Debug\decks\Duel\B71754AD93DE95D834CE148F357193A6.dec" />
+    <None Include="bin\Debug\decks\Duel\BAA560B4E4A61F06CF89FFF63275AE1F.dec" />
+    <None Include="bin\Debug\decks\Duel\BCE7579FFCADE422031A3773E2629BD7.dec" />
+    <None Include="bin\Debug\decks\Duel\C5A39B089E704A9D3A14BB28E1E7D9E2.dec" />
+    <None Include="bin\Debug\decks\Duel\C6E1F98D14EEE748CA2B0DE45B76512C.dec" />
+    <None Include="bin\Debug\decks\Duel\CAAACB040725842BC0D8C0D059111E03.dec" />
+    <None Include="bin\Debug\decks\Duel\CDA63918057C92925D97FDBDEF8F5552.dec" />
+    <None Include="bin\Debug\decks\Duel\D081121718A8AA48FBC5C30FF1851C18.dec" />
+    <None Include="bin\Debug\decks\Duel\D56F397EFAD02E12375D03C20D3B19AA.dec" />
+    <None Include="bin\Debug\decks\Duel\D81FDE63CCF664EB236E1AC1BD1C8B14.dec" />
+    <None Include="bin\Debug\decks\Duel\DC83AD15A2114597DF1BDC71C72FD532.dec" />
+    <None Include="bin\Debug\decks\Duel\DD0D02979708789A6B60D93AABA28B8A.dec" />
+    <None Include="bin\Debug\decks\Duel\E7116F2C6D32454F9038C664E81E96D0.dec" />
+    <None Include="bin\Debug\decks\Duel\EC5FF63C4C69CE1FEF588197D4257332.dec" />
+    <None Include="bin\Debug\decks\Duel\F09EACAC5776E16CC6E38DFBFAAF2DD6.dec" />
+    <None Include="bin\Debug\decks\Duel\F44DB0C9B0BACC9A58184391FD03D1FB.dec" />
+    <None Include="bin\Debug\decks\Duel\F638F48B4513FB4DB27DA2341386E9F4.dec" />
+    <None Include="bin\Debug\decks\Duel\F6E366DDEAB1FB036B0B6B4458A49881.dec" />
+    <None Include="bin\Debug\decks\Duel\F9288D7CF8F652B124FFD6CD7C1AC9D7.dec" />
+    <None Include="bin\Debug\decks\Duel\FAE02371BED94ACC5EE2496B91351C1D.dec" />
+    <None Include="bin\Debug\decks\Extended\095D180EE7DD5DC05A65B49D66755B00.dec" />
+    <None Include="bin\Debug\decks\Extended\284330232952BD7242F5DF8E78C7B2B6.dec" />
+    <None Include="bin\Debug\decks\Extended\2F2F8280A0D3EACB99243E9CCCA258B4.dec" />
+    <None Include="bin\Debug\decks\Extended\480B98A93B6F1AB3CE7CD673CE4E41BD.dec" />
+    <None Include="bin\Debug\decks\Extended\4C875AE0734FC7ED89EB6EBE9A02C9B4.dec" />
+    <None Include="bin\Debug\decks\Extended\4EBFC23A634600B89C25E93377606819.dec" />
+    <None Include="bin\Debug\decks\Extended\524DDE5B02BFF21FBDA44D7F7802746B.dec" />
+    <None Include="bin\Debug\decks\Extended\5BC9190D6F10A3B00BBF258114EE72EA.dec" />
+    <None Include="bin\Debug\decks\Extended\5F04A7326E9EE8C7B78D8BA9AB9DB7B5.dec" />
+    <None Include="bin\Debug\decks\Extended\630218544668A46B40DC0BB1DB3F82F2.dec" />
+    <None Include="bin\Debug\decks\Extended\758649F659A433597A719EAE4A968EB0.dec" />
+    <None Include="bin\Debug\decks\Extended\9A49E5E83B9ADFDA965A3CB627B703B6.dec" />
+    <None Include="bin\Debug\decks\Extended\A9CE5719A1636E9F0E86238F4DE1BC91.dec" />
+    <None Include="bin\Debug\decks\Extended\AEA8C735EEA354859F14409982327CCD.dec" />
+    <None Include="bin\Debug\decks\Extended\BCFAFBDA2CE9EA035628C1FD4696B4A3.dec" />
+    <None Include="bin\Debug\decks\Extended\BE5DF2052C21DEB57B118BD145EF43E7.dec" />
+    <None Include="bin\Debug\decks\Extended\E18FF32A33AD6DBA081DDBD8B5276946.dec" />
+    <None Include="bin\Debug\decks\Extended\E8BFFFB23CD62294E106A71C4625C957.dec" />
+    <None Include="bin\Debug\decks\Highlander\08AD1AE0254377A9196400DB37879071.dec" />
+    <None Include="bin\Debug\decks\Highlander\0A40FE73E26493DBE2AB6C6D06BB872A.dec" />
+    <None Include="bin\Debug\decks\Highlander\324CA86881143B7C65F9B764996CCA77.dec" />
+    <None Include="bin\Debug\decks\Highlander\952CDDBDDAFAB93DEBAD53E9F2CBFC84.dec" />
+    <None Include="bin\Debug\decks\Highlander\9DA386807E24C87E6BDB5B91B3DA4F16.dec" />
+    <None Include="bin\Debug\decks\Highlander\9FD255C548698B78AC84D3DC029C8923.dec" />
+    <None Include="bin\Debug\decks\Highlander\A83AEE8100C89205B01264D314D16643.dec" />
+    <None Include="bin\Debug\decks\Legacy\0050BD05D11A6A4AA24E73D89FF144A3.dec" />
+    <None Include="bin\Debug\decks\Legacy\00992E2B18D675FA8F6FC4B91F68658B.dec" />
+    <None Include="bin\Debug\decks\Legacy\047186B52BE3A886FBC6E44A359E4302.dec" />
+    <None Include="bin\Debug\decks\Legacy\07BCFC4C9DAD6BB1A8B494F727747EC7.dec" />
+    <None Include="bin\Debug\decks\Legacy\08537DE898C71E2D32FB093B9F67839B.dec" />
+    <None Include="bin\Debug\decks\Legacy\0CFB7468E133EA79755AEB0D2A091066.dec" />
+    <None Include="bin\Debug\decks\Legacy\0F76E9806F6E9591CFCEACDEF429482F.dec" />
+    <None Include="bin\Debug\decks\Legacy\1477E15BB450AAEDFFA592CBF4640203.dec" />
+    <None Include="bin\Debug\decks\Legacy\151BB363745B705E6FE6FB4D387BD114.dec" />
+    <None Include="bin\Debug\decks\Legacy\18712B98E60A8EC76D0AEBF1299334B5.dec" />
+    <None Include="bin\Debug\decks\Legacy\1898916DE51107E833CD4A58E153C815.dec" />
+    <None Include="bin\Debug\decks\Legacy\1E5D8D410968683DC9D4F48F86E0F45F.dec" />
+    <None Include="bin\Debug\decks\Legacy\1E90AA61DA66549E278A329A95DFDC49.dec" />
+    <None Include="bin\Debug\decks\Legacy\1EFC3ACA1F527064282FFB6BD1BF13C0.dec" />
+    <None Include="bin\Debug\decks\Legacy\1FBA7AE4C53437561284DE189A3FBE44.dec" />
+    <None Include="bin\Debug\decks\Legacy\2357B71840DD670F9D9430E4D14C8A8B.dec" />
+    <None Include="bin\Debug\decks\Legacy\23673BA8653C81D5DA53737A1BC1DEB6.dec" />
+    <None Include="bin\Debug\decks\Legacy\25F1EC12C342FDACB2B26EC14BC61E86.dec" />
+    <None Include="bin\Debug\decks\Legacy\26C4FC6AB2761EEC2E6EAA45E52F93E5.dec" />
+    <None Include="bin\Debug\decks\Legacy\289B1BCFB44DB56DCCBD234F1257EBEF.dec" />
+    <None Include="bin\Debug\decks\Legacy\2B631A798CB014892A130EF491898463.dec" />
+    <None Include="bin\Debug\decks\Legacy\2E29DB514DD4A8A45B5DFA103367210D.dec" />
+    <None Include="bin\Debug\decks\Legacy\30E50C749A29F72D1FFD5847164D7F19.dec" />
+    <None Include="bin\Debug\decks\Legacy\31525D20FCBD5B45BB29C336D70AFCBF.dec" />
+    <None Include="bin\Debug\decks\Legacy\3232BAA0D6D4D73219BFEB89D673E210.dec" />
+    <None Include="bin\Debug\decks\Legacy\33E4F4773F59EC609B266C31F5C179C6.dec" />
+    <None Include="bin\Debug\decks\Legacy\38173F07CA2BD4D1B80C099BCEA62AFF.dec" />
+    <None Include="bin\Debug\decks\Legacy\39C7DE797DDBBC785E379CD4AE4E252F.dec" />
+    <None Include="bin\Debug\decks\Legacy\3BC335489792B38AD208EDD9759AF97B.dec" />
+    <None Include="bin\Debug\decks\Legacy\3C4E032AE4D154B5692096BAFC3C6CCC.dec" />
+    <None Include="bin\Debug\decks\Legacy\3E124882FE7E5746BB66E270762FE23A.dec" />
+    <None Include="bin\Debug\decks\Legacy\422810AAFAB1581F5D39524D05463903.dec" />
+    <None Include="bin\Debug\decks\Legacy\456A0EEB8800E10ED9371992D74F35B8.dec" />
+    <None Include="bin\Debug\decks\Legacy\45C702C30B6351659701687E9E34A52F.dec" />
+    <None Include="bin\Debug\decks\Legacy\4969B60ED10655ED007FB4F3F0EE7A13.dec" />
+    <None Include="bin\Debug\decks\Legacy\4BA37A2C6F4B3D00D825CF167D2A61BC.dec" />
+    <None Include="bin\Debug\decks\Legacy\582B38EBA7B8C3FEC711C1419013B21E.dec" />
+    <None Include="bin\Debug\decks\Legacy\5ACD72D941101E6FD1AD9F14662DA182.dec" />
+    <None Include="bin\Debug\decks\Legacy\5E18676AA9B42740A4C869708DC3C500.dec" />
+    <None Include="bin\Debug\decks\Legacy\5E244124E6EDE7042C4C99368C63E1B0.dec" />
+    <None Include="bin\Debug\decks\Legacy\600104BA1F1365D436C3BE218DECE257.dec" />
+    <None Include="bin\Debug\decks\Legacy\602C8C6D9A5E8A237DA479B01D13BF7F.dec" />
+    <None Include="bin\Debug\decks\Legacy\621E7387FDFC3EACC0DECD267DC7E207.dec" />
+    <None Include="bin\Debug\decks\Legacy\6497B0E170F614D3271C3C7CAC317D98.dec" />
+    <None Include="bin\Debug\decks\Legacy\656BE24E75BB10B4EC69C985518A10F0.dec" />
+    <None Include="bin\Debug\decks\Legacy\659448012E033C2738B2F969FADBEF7C.dec" />
+    <None Include="bin\Debug\decks\Legacy\65F5BE906E5EE3B08AB65C68F7084C41.dec" />
+    <None Include="bin\Debug\decks\Legacy\6886E29110DAEC97062F1B41B4258EF9.dec" />
+    <None Include="bin\Debug\decks\Legacy\6CDD24839D8BC26D80DF0DD7B9871A8D.dec" />
+    <None Include="bin\Debug\decks\Legacy\6F7E48ACE27A36AF87696BD7A2310EEC.dec" />
+    <None Include="bin\Debug\decks\Legacy\6F94B928687B42F85BFF4A5263B621FA.dec" />
+    <None Include="bin\Debug\decks\Legacy\710A3AF69B66E4ECD0DC4A22DAAA91CC.dec" />
+    <None Include="bin\Debug\decks\Legacy\76297C3D94A8A4699A94FA4BC8EF07A3.dec" />
+    <None Include="bin\Debug\decks\Legacy\7BD85DFD04B7CF0EE9E01C8E984166CC.dec" />
+    <None Include="bin\Debug\decks\Legacy\7C6610CFF0BDD4269265C01F536C6D9E.dec" />
+    <None Include="bin\Debug\decks\Legacy\7CCB961B73B7A1D3D0E1633BC036447E.dec" />
+    <None Include="bin\Debug\decks\Legacy\8047FDDA54875F1A6B5D89C5A903D250.dec" />
+    <None Include="bin\Debug\decks\Legacy\81ECE372D34C5CBD4C26B6A90D43D045.dec" />
+    <None Include="bin\Debug\decks\Legacy\84CA12FE77DE57BEDEC22FCD2BB9E217.dec" />
+    <None Include="bin\Debug\decks\Legacy\858DFD8A592BB26947E377C29EE24297.dec" />
+    <None Include="bin\Debug\decks\Legacy\85A01BCA5E90803788BCC152E92DB457.dec" />
+    <None Include="bin\Debug\decks\Legacy\872679A68D4CE46B56B3886D00A8499E.dec" />
+    <None Include="bin\Debug\decks\Legacy\873645B0F727BB2DF47751124887D815.dec" />
+    <None Include="bin\Debug\decks\Legacy\87650F48D543FDFB2C04993564AC8B95.dec" />
+    <None Include="bin\Debug\decks\Legacy\890AFE4A439AF17CCAF0D897D55AF989.dec" />
+    <None Include="bin\Debug\decks\Legacy\8C413E49D2974C8C591D134B482C2626.dec" />
+    <None Include="bin\Debug\decks\Legacy\8F880048F2E42BC002A3FDB33B69DE77.dec" />
+    <None Include="bin\Debug\decks\Legacy\90E7D405917B7779760B84A0A2CB8246.dec" />
+    <None Include="bin\Debug\decks\Legacy\92FDDA71049C53BE6699339566E846B5.dec" />
+    <None Include="bin\Debug\decks\Legacy\951B1D754FFBC83268527018CC7FF861.dec" />
+    <None Include="bin\Debug\decks\Legacy\968F368E67CD3B8834525A17756E8959.dec" />
+    <None Include="bin\Debug\decks\Legacy\9F7DE04304F112869D392404A50E7927.dec" />
+    <None Include="bin\Debug\decks\Legacy\A0056BE2A0A9D2F98223D9E79C5CBE9E.dec" />
+    <None Include="bin\Debug\decks\Legacy\A4472A4656FEA0FDC29C1BA3593BB8FF.dec" />
+    <None Include="bin\Debug\decks\Legacy\A76D1C1CD568A5EF902CA9D803108478.dec" />
+    <None Include="bin\Debug\decks\Legacy\ABD951F4A78716928BF58713392A02D3.dec" />
+    <None Include="bin\Debug\decks\Legacy\ADABAC19024ED2C52D0E1D538E1682C0.dec" />
+    <None Include="bin\Debug\decks\Legacy\AFA4B538FEC13D30FAA3103B9F6DAAAA.dec" />
+    <None Include="bin\Debug\decks\Legacy\B2C6137055A96C90BB189934460FDB8C.dec" />
+    <None Include="bin\Debug\decks\Legacy\B3E0782EF2A819DF6DA095FB0B0F28E4.dec" />
+    <None Include="bin\Debug\decks\Legacy\B51243688800763FD8B0704A91FE2506.dec" />
+    <None Include="bin\Debug\decks\Legacy\BC1E20FCD0F4E794957F7C76A95543AD.dec" />
+    <None Include="bin\Debug\decks\Legacy\C02E5419E2B9A34B1E3421E09E34F6E0.dec" />
+    <None Include="bin\Debug\decks\Legacy\C10EF9F5A8DA773AF0DA404C37502A9F.dec" />
+    <None Include="bin\Debug\decks\Legacy\C5F01660935C4F5901F30F335FDAC07C.dec" />
+    <None Include="bin\Debug\decks\Legacy\C66D503096FCAD316B5FD6E87F429C6A.dec" />
+    <None Include="bin\Debug\decks\Legacy\CD9CDA4E57795E192EADE67100FB19CD.dec" />
+    <None Include="bin\Debug\decks\Legacy\CDBB4E3A2A04AE1E7C33E94E8F31B849.dec" />
+    <None Include="bin\Debug\decks\Legacy\D88FA03367248CC96C97BB52CDCB64CE.dec" />
+    <None Include="bin\Debug\decks\Legacy\D8F7B22CECF547C2B80739157AF92360.dec" />
+    <None Include="bin\Debug\decks\Legacy\DA76CCFBC4F8F3ECD5FE2E5BA02A3692.dec" />
+    <None Include="bin\Debug\decks\Legacy\DAC75A3307F3F81B74D6C6E9C67AC90C.dec" />
+    <None Include="bin\Debug\decks\Legacy\DB8CC913C64A7A2E77FF21B82C8F0836.dec" />
+    <None Include="bin\Debug\decks\Legacy\DC99FF38DA69D253A627BFA491CB2001.dec" />
+    <None Include="bin\Debug\decks\Legacy\E193EFD7B4527D93E67D0B2A335D76E8.dec" />
+    <None Include="bin\Debug\decks\Legacy\E2A696105F6990BA5641EC5EF7503DA7.dec" />
+    <None Include="bin\Debug\decks\Legacy\E3A34F55A0A6BF538093184099A633B0.dec" />
+    <None Include="bin\Debug\decks\Legacy\E3B4ADF18ACCCD9DFDCE76A6F4256210.dec" />
+    <None Include="bin\Debug\decks\Legacy\E513554FD3CA09E21D1894D8437E6E37.dec" />
+    <None Include="bin\Debug\decks\Legacy\E59D1D73A8480C0B36542E1039B0B9B1.dec" />
+    <None Include="bin\Debug\decks\Legacy\EB5179469BE2486F5E715AFBEBF9A5F9.dec" />
+    <None Include="bin\Debug\decks\Legacy\F6D0CA7289B4C231B4D329493A621AA4.dec" />
+    <None Include="bin\Debug\decks\Legacy\FA9555FD4E21987D5A174E7E595D349B.dec" />
+    <None Include="bin\Debug\decks\Legacy\FC94DCC7F35C1382516CD553A693599A.dec" />
+    <None Include="bin\Debug\decks\Limited\051707671ACEFE086C41CF2DC60F9D21.dec" />
+    <None Include="bin\Debug\decks\Limited\10665CCBFDE6DB155A449A290FABEDB9.dec" />
+    <None Include="bin\Debug\decks\Limited\5968C087E515623809AEFCEBE0EA069F.dec" />
+    <None Include="bin\Debug\decks\Limited\9B7346E19B6613DA69E62316E9E6FF91.dec" />
+    <None Include="bin\Debug\decks\Limited\9DC78D83F7212FACA7C4CB0F900C06F1.dec" />
+    <None Include="bin\Debug\decks\Limited\EE8C1FE253AE9E150819FA579204712F.dec" />
+    <None Include="bin\Debug\decks\Limited\F4F7236DF4B83F35E56A229AA98B5370.dec" />
+    <None Include="bin\Debug\decks\Limited\F7EE471CC6B6D6DE8AF73E0A80A94B58.dec" />
+    <None Include="bin\Debug\decks\Modern\0045C9E488A7B3707413DECF413C6841.dec" />
+    <None Include="bin\Debug\decks\Modern\0276410A49AEC1E42E65679576AEBAC1.dec" />
+    <None Include="bin\Debug\decks\Modern\050C7E67016D19F7A05ACCE7EFEA36B2.dec" />
+    <None Include="bin\Debug\decks\Modern\05F22274308E8237B20F7092909C98E6.dec" />
+    <None Include="bin\Debug\decks\Modern\0C24A22F0D6E1E52989BB2EF55C050D6.dec" />
+    <None Include="bin\Debug\decks\Modern\0CE753322FCC09A6F1BA85C71404C651.dec" />
+    <None Include="bin\Debug\decks\Modern\0F112787B0338CAEEDAC36F49C7F3907.dec" />
+    <None Include="bin\Debug\decks\Modern\16FFFDB6D7C7E751CFD71E1F22638C9D.dec" />
+    <None Include="bin\Debug\decks\Modern\19733DB25902F238AC7100E0D0E62B20.dec" />
+    <None Include="bin\Debug\decks\Modern\20FE88CDB45FF856CA8A2EE0C7D74021.dec" />
+    <None Include="bin\Debug\decks\Modern\225E70B013D97C285BB146AE6EDF3FE6.dec" />
+    <None Include="bin\Debug\decks\Modern\24D1929E2D4FEBDB24CF24F01986D435.dec" />
+    <None Include="bin\Debug\decks\Modern\2839806022F11BABFBDB523BCE828BFD.dec" />
+    <None Include="bin\Debug\decks\Modern\3B283372B3BAD39D811CBC32FBECCDC5.dec" />
+    <None Include="bin\Debug\decks\Modern\3BEE59FB48543E8318E1594D2797B2DC.dec" />
+    <None Include="bin\Debug\decks\Modern\3C2FA2C04437231BEF20428825FCCD29.dec" />
+    <None Include="bin\Debug\decks\Modern\3E91C3B9A42C0A33B521A736BF4FF37F.dec" />
+    <None Include="bin\Debug\decks\Modern\4A9C720A9BFED3FD2D8F8A47DB17C12C.dec" />
+    <None Include="bin\Debug\decks\Modern\4AA8EFB5BE59A40EC7A493AF81552110.dec" />
+    <None Include="bin\Debug\decks\Modern\4CC5A34B609A370F3F0641EB8784B0CC.dec" />
+    <None Include="bin\Debug\decks\Modern\4DEF93303A15E09856FE802DBF95FDB9.dec" />
+    <None Include="bin\Debug\decks\Modern\4EA1DE038A17136A16F2CCEEC816BBC5.dec" />
+    <None Include="bin\Debug\decks\Modern\4F54617F4145CA0568C9CD4C6FB85E53.dec" />
+    <None Include="bin\Debug\decks\Modern\4FEB7BC21607CFA4F0093C116F593BDB.dec" />
+    <None Include="bin\Debug\decks\Modern\515F3AC6AB1D296427D12047538DA1C8.dec" />
+    <None Include="bin\Debug\decks\Modern\51C696E9CB31C13668650A277D0ED52C.dec" />
+    <None Include="bin\Debug\decks\Modern\5525F5374299F70713DE55E681A64FD7.dec" />
+    <None Include="bin\Debug\decks\Modern\561A5933C2875CE9F86261ECD1C01165.dec" />
+    <None Include="bin\Debug\decks\Modern\563BDD76FC030C6B386844D39621EA33.dec" />
+    <None Include="bin\Debug\decks\Modern\5A5029889F0DE838E4E54BE61E25986D.dec" />
+    <None Include="bin\Debug\decks\Modern\5BE257E9BD1D0E6A6E07442CD7CE0DA6.dec" />
+    <None Include="bin\Debug\decks\Modern\5E3576FFFBC7F6694BF8FFF6DDFF8C04.dec" />
+    <None Include="bin\Debug\decks\Modern\5E8959528C84F98A0EF2A62C5CB8162D.dec" />
+    <None Include="bin\Debug\decks\Modern\5EDAD85D4D04554BA7BEB24501A10157.dec" />
+    <None Include="bin\Debug\decks\Modern\6203A27DE8CB28A050A8697DC5EFB9FE.dec" />
+    <None Include="bin\Debug\decks\Modern\62E75E93B852F9F9097C2091FF6F5134.dec" />
+    <None Include="bin\Debug\decks\Modern\63CCDAE1D91F28F6EF6D05E411EE25FD.dec" />
+    <None Include="bin\Debug\decks\Modern\64438CA3712921746228394EA50D3D0E.dec" />
+    <None Include="bin\Debug\decks\Modern\651DDAA97784C578AFCFCA92EDAD7830.dec" />
+    <None Include="bin\Debug\decks\Modern\6548C5E8B4090F3B2BF2BB25C3C975CA.dec" />
+    <None Include="bin\Debug\decks\Modern\6B57F6F28A33E318E462A2A047670C65.dec" />
+    <None Include="bin\Debug\decks\Modern\6BD948C81865C9D2518DBC60395B68A8.dec" />
+    <None Include="bin\Debug\decks\Modern\6CA2EC94A764FBBE7C67D54BB91D8C41.dec" />
+    <None Include="bin\Debug\decks\Modern\6CE1A91CB760F7D5430E3229BD02CE03.dec" />
+    <None Include="bin\Debug\decks\Modern\6DBF65A6A4CEBC7A469DC8D6200E46D6.dec" />
+    <None Include="bin\Debug\decks\Modern\6F0668989112986145AC3B8B7F198363.dec" />
+    <None Include="bin\Debug\decks\Modern\74DAAEF3DE769855035B1DEBED6DE75E.dec" />
+    <None Include="bin\Debug\decks\Modern\7500BD4955C60CC24B5EEC182A7F266D.dec" />
+    <None Include="bin\Debug\decks\Modern\7696F2A74D61701A96C0CFE8BF64D1E3.dec" />
+    <None Include="bin\Debug\decks\Modern\77611BFA8A5AB57E1244E8EE595073A7.dec" />
+    <None Include="bin\Debug\decks\Modern\7C5CACC66EC101810F86CA9D0F017E04.dec" />
+    <None Include="bin\Debug\decks\Modern\7ECD4D17DE72FF1643AA1F94B0A63DAD.dec" />
+    <None Include="bin\Debug\decks\Modern\7F9C49CE076E805C7F043E55ACBDABD5.dec" />
+    <None Include="bin\Debug\decks\Modern\825279FA618C7E5BAE483C2F515AA459.dec" />
+    <None Include="bin\Debug\decks\Modern\84C839EC2D8FD21D0779A51052762F64.dec" />
+    <None Include="bin\Debug\decks\Modern\9068431C4FF4DABF8E113485004E3D92.dec" />
+    <None Include="bin\Debug\decks\Modern\95B66E8DDEE4F492BB0B698787C63D31.dec" />
+    <None Include="bin\Debug\decks\Modern\95C3D601D27B4F308A62767F4C363CA2.dec" />
+    <None Include="bin\Debug\decks\Modern\96EEC75E23889AC5487CC555D5FF0642.dec" />
+    <None Include="bin\Debug\decks\Modern\9D50AEF8E4511A40439BA3D8B622E1C0.dec" />
+    <None Include="bin\Debug\decks\Modern\9DDC3E71CC4E40ABF2AF8E72EC1A6F8A.dec" />
+    <None Include="bin\Debug\decks\Modern\A27E21162805422CA77671B10BD11D50.dec" />
+    <None Include="bin\Debug\decks\Modern\A3868745104622B8D903AAF79AA68897.dec" />
+    <None Include="bin\Debug\decks\Modern\A67E5A2C553A866E651D3FB33A78AD69.dec" />
+    <None Include="bin\Debug\decks\Modern\AB6FE4D00E8E77A06CE35E3325AE5105.dec" />
+    <None Include="bin\Debug\decks\Modern\B1A14D8A492C241C34831971431D2F84.dec" />
+    <None Include="bin\Debug\decks\Modern\B2B4131BB43CFB9E06D47912EBF9B362.dec" />
+    <None Include="bin\Debug\decks\Modern\B5A7BF4C57EDA8B89F8BE75930F69D60.dec" />
+    <None Include="bin\Debug\decks\Modern\B5B2D4BAF4FC66201EC8BF1D20F5AF0F.dec" />
+    <None Include="bin\Debug\decks\Modern\C1AE8483802092017E99CB3F74FD888C.dec" />
+    <None Include="bin\Debug\decks\Modern\C578FF686774234EB529C5FBE8697DBB.dec" />
+    <None Include="bin\Debug\decks\Modern\CB7FD3FCE9B9AD8E200040D65B320270.dec" />
+    <None Include="bin\Debug\decks\Modern\CE25CD69B17CB792EABC87246E137988.dec" />
+    <None Include="bin\Debug\decks\Modern\CE94B507FF4F1C8E94599EE7F4F76C55.dec" />
+    <None Include="bin\Debug\decks\Modern\D0D9328C6784491E88A4CEC8EC36E82E.dec" />
+    <None Include="bin\Debug\decks\Modern\D21DF238D7EFCF8598D9AF87BD6CC18A.dec" />
+    <None Include="bin\Debug\decks\Modern\D246282ECB203A6904BF06BBACF1D390.dec" />
+    <None Include="bin\Debug\decks\Modern\D633EDACD777E984C70DBAD1403F21EB.dec" />
+    <None Include="bin\Debug\decks\Modern\D9030FB20852A5C747A9EA0800FC2E26.dec" />
+    <None Include="bin\Debug\decks\Modern\E3E00A804A0EF5396D8DF94CAA8D8C5D.dec" />
+    <None Include="bin\Debug\decks\Modern\E65D2CB4B0DA16912A247350DF3D2D38.dec" />
+    <None Include="bin\Debug\decks\Modern\E879EE50B4DDA3B4A005ABE7167D8C1A.dec" />
+    <None Include="bin\Debug\decks\Modern\E94069CFAEA685F19F798EE3CB3298C1.dec" />
+    <None Include="bin\Debug\decks\Modern\EAFEBBCB89EFE7B48E2628CF0BB9328E.dec" />
+    <None Include="bin\Debug\decks\Modern\F0DD0178715E945CDF3A8216CC462F60.dec" />
+    <None Include="bin\Debug\decks\Modern\F0ECED946C9C4250538D5EDC78E351D3.dec" />
+    <None Include="bin\Debug\decks\Modern\F14CE3C8F41D7E834660C8E15E6FE867.dec" />
+    <None Include="bin\Debug\decks\Modern\F4AFD1BD0432E997C32B13743E3E576F.dec" />
+    <None Include="bin\Debug\decks\Modern\F96F0160631E34CE092036A2CDE0B3E9.dec" />
+    <None Include="bin\Debug\decks\Modern\FA76201052C69DEB4E9993B7B4EA090A.dec" />
+    <None Include="bin\Debug\decks\Modern\FEB835AF4EDC67687A319B61DFD44941.dec" />
+    <None Include="bin\Debug\decks\Modern\FFD5A95CDCD499817E181D751F78F4AF.dec" />
+    <None Include="bin\Debug\decks\MTGO\02B12F63052DEEFC887E39C13BE571F1.dec" />
+    <None Include="bin\Debug\decks\MTGO\03B2DCED55B62BB8638FB078B7D3FC90.dec" />
+    <None Include="bin\Debug\decks\MTGO\0BE0449B0432DCD52D80366637D877AE.dec" />
+    <None Include="bin\Debug\decks\MTGO\16B6BE14FE6BB3DA6120DDE11A22AA63.dec" />
+    <None Include="bin\Debug\decks\MTGO\225B0E1EA7AEA85B110E8E67ED87DC98.dec" />
+    <None Include="bin\Debug\decks\MTGO\2FF478776C16D350FCD0FAD8C9DF9A43.dec" />
+    <None Include="bin\Debug\decks\MTGO\3CCEED3B065C85F0C73D04D3A33C6876.dec" />
+    <None Include="bin\Debug\decks\MTGO\5C450BC8C5F9105D9F0B85EB47704BEE.dec" />
+    <None Include="bin\Debug\decks\MTGO\743C7F16BCC727C8C793A97EED710093.dec" />
+    <None Include="bin\Debug\decks\MTGO\888716FDAF91EAE521914AC115374261.dec" />
+    <None Include="bin\Debug\decks\MTGO\8AD3A03BA8CA1B3CB65ADB16211A0C81.dec" />
+    <None Include="bin\Debug\decks\MTGO\A912026818A7F27884641A6ABBD46FBF.dec" />
+    <None Include="bin\Debug\decks\MTGO\B6F0B72E72BA83D1461B2FAB48AFB444.dec" />
+    <None Include="bin\Debug\decks\MTGO\BDD068103685A05E5A0BF212955E38C5.dec" />
+    <None Include="bin\Debug\decks\MTGO\C2DBBCD47E4D9DC71647CF973A23F0F5.dec" />
+    <None Include="bin\Debug\decks\MTGO\C6BECCA58FDC7963D5C0A745A63B1F5C.dec" />
+    <None Include="bin\Debug\decks\MTGO\FFF2CDA2B7C6E7A3E0B8849E46577654.dec" />
+    <None Include="bin\Debug\decks\Pauper\002CC901759368660C88EF8396D62919.dec" />
+    <None Include="bin\Debug\decks\Pauper\5815DDE610272FCDE20870AB3DFFC1C7.dec" />
+    <None Include="bin\Debug\decks\Pauper\60553F7E69D4E75F92EEB6396A1731AA.dec" />
+    <None Include="bin\Debug\decks\Pauper\97EF5103E694114DCB1852D759D69DEF.dec" />
+    <None Include="bin\Debug\decks\Pauper\BCBE5335B2935083966BAAAE89E95DFF.dec" />
+    <None Include="bin\Debug\decks\Pauper\C6F004890F61E4C06C7A85FCF742A9B9.dec" />
+    <None Include="bin\Debug\decks\Pauper\CA1B42EA547B8DF285BE886EDC573AA7.dec" />
+    <None Include="bin\Debug\decks\Peasant\2ADA128E33B43BE5202FE223E79A88DE.dec" />
+    <None Include="bin\Debug\decks\Peasant\2E31E95554C37FF351DE44DA8237D3B5.dec" />
+    <None Include="bin\Debug\decks\Peasant\3D7637DFA07D3B1235F802642D1141FA.dec" />
+    <None Include="bin\Debug\decks\Peasant\3E2722BDF574AA0662182F76F09BE82E.dec" />
+    <None Include="bin\Debug\decks\Peasant\4BD59167A57DAC0D1CFB60B8182B708B.dec" />
+    <None Include="bin\Debug\decks\Peasant\4D893299A6EC3694572E06CE7C304A13.dec" />
+    <None Include="bin\Debug\decks\Peasant\6B8BC17007381A57069A052158981600.dec" />
+    <None Include="bin\Debug\decks\Peasant\81B2923188CF250E4C329A95748728E7.dec" />
+    <None Include="bin\Debug\decks\Peasant\87494378BFDB5AA9D4DAB112C4A767CD.dec" />
+    <None Include="bin\Debug\decks\Peasant\A228C342A2ED586187FE59D6C06B0702.dec" />
+    <None Include="bin\Debug\decks\Peasant\AE733C8B29C0E241C1F39F87E4E22E9C.dec" />
+    <None Include="bin\Debug\decks\Peasant\B0059E1B97BF840A12E22196BF1BD654.dec" />
+    <None Include="bin\Debug\decks\Peasant\B1C29946C3E3FF2814FBF55C325D0B25.dec" />
+    <None Include="bin\Debug\decks\Peasant\B32825B231DC4DF05D618C8F03343D4A.dec" />
+    <None Include="bin\Debug\decks\Peasant\D12450FC1EA12C9504A07836017EFFC8.dec" />
+    <None Include="bin\Debug\decks\Peasant\D163098B8BE83DE65D8535A593C0F90A.dec" />
+    <None Include="bin\Debug\decks\Standard\011CA573520641D121804F9BA543A52D.dec" />
+    <None Include="bin\Debug\decks\Standard\015415BA340CD0A1779FD20FBF829F25.dec" />
+    <None Include="bin\Debug\decks\Standard\03AC0312D42D4E6B7FE3B60F88B5EDFA.dec" />
+    <None Include="bin\Debug\decks\Standard\08B1ED3F21CD76B0B25B919B4943BA76.dec" />
+    <None Include="bin\Debug\decks\Standard\0B451D2AA56F20534B9FD7B8DF3CDE30.dec" />
+    <None Include="bin\Debug\decks\Standard\0CB28F611239B61D2FB1E69FADDD92A5.dec" />
+    <None Include="bin\Debug\decks\Standard\1031E8B96D120210CD236A38F18AF490.dec" />
+    <None Include="bin\Debug\decks\Standard\15F7202A565F5EE6394F09E1EA6ADFCD.dec" />
+    <None Include="bin\Debug\decks\Standard\1740BD72CE36CE38108462FADDE2A3F1.dec" />
+    <None Include="bin\Debug\decks\Standard\1AAAF2BC44EB379876CF77602B889F9F.dec" />
+    <None Include="bin\Debug\decks\Standard\1C282F98AEB2CFC0F13DADF8187DBC87.dec" />
+    <None Include="bin\Debug\decks\Standard\1CDE77C91ECA237C105E88FBBE12A8F9.dec" />
+    <None Include="bin\Debug\decks\Standard\21B4F8EDAC9D19235267DF6283C095D2.dec" />
+    <None Include="bin\Debug\decks\Standard\22AD5B0503FF28C06114851BE3FFD3D9.dec" />
+    <None Include="bin\Debug\decks\Standard\24C5A7B0BC948B96342E57889723B8E3.dec" />
+    <None Include="bin\Debug\decks\Standard\254E8E0A169FB8266D1133EE4CA69546.dec" />
+    <None Include="bin\Debug\decks\Standard\26D798A5A8A0BC97C5625901ED6E67E8.dec" />
+    <None Include="bin\Debug\decks\Standard\27E3FA0528A19C9EB05D3B8DF3719F3A.dec" />
+    <None Include="bin\Debug\decks\Standard\28CDDB31B87B67939961B5C24A0F6A89.dec" />
+    <None Include="bin\Debug\decks\Standard\28FC9D26F47DC54D2B1388ECC3FC6D43.dec" />
+    <None Include="bin\Debug\decks\Standard\2A6D267D696F91B905E0D863D8F36248.dec" />
+    <None Include="bin\Debug\decks\Standard\2D89956D5B82EB4743D411F948075B0D.dec" />
+    <None Include="bin\Debug\decks\Standard\2E6FB004E42758AD19213D39E72EF66E.dec" />
+    <None Include="bin\Debug\decks\Standard\2FC1DB077B6EA4FAED0CEFF304F19A33.dec" />
+    <None Include="bin\Debug\decks\Standard\306ED7E35F48FC04B48F3BEC352FACDB.dec" />
+    <None Include="bin\Debug\decks\Standard\32069C799783D6FB5335E82598DD184A.dec" />
+    <None Include="bin\Debug\decks\Standard\3303F498B536E9E22040DFB9EAFD2C93.dec" />
+    <None Include="bin\Debug\decks\Standard\337E82F8DBFB807BDE6B45C671A434AA.dec" />
+    <None Include="bin\Debug\decks\Standard\3478614CB66A11104DE37ACFF916DBEB.dec" />
+    <None Include="bin\Debug\decks\Standard\3733CDBA156EC059CF71620B6F5D61D8.dec" />
+    <None Include="bin\Debug\decks\Standard\383AD923E017603B8573D6FEE9C1B4C9.dec" />
+    <None Include="bin\Debug\decks\Standard\394147E83EF3394E30791A2E6FD430BA.dec" />
+    <None Include="bin\Debug\decks\Standard\3B5AFFADF68AA54B705169077ECBE6C3.dec" />
+    <None Include="bin\Debug\decks\Standard\3C76A2E620E7DAF6DC12B6C3E450A3F1.dec" />
+    <None Include="bin\Debug\decks\Standard\3C850E2A60811D21A3A5EF9904D889C7.dec" />
+    <None Include="bin\Debug\decks\Standard\3C8FAA02C0E66B6AAEC73488619C76F3.dec" />
+    <None Include="bin\Debug\decks\Standard\3DE6E737D305E86CDF3037F72BDE7A41.dec" />
+    <None Include="bin\Debug\decks\Standard\3DF55A062EC4E809EAC1466D72495C7C.dec" />
+    <None Include="bin\Debug\decks\Standard\3EDF5E73EC1D5BE0EAB6414F6AF98DFB.dec" />
+    <None Include="bin\Debug\decks\Standard\3F1C4E77053F83EFA288D8C58AD270C9.dec" />
+    <None Include="bin\Debug\decks\Standard\3FBDCC52CD28CE97702111356F385322.dec" />
+    <None Include="bin\Debug\decks\Standard\413C088ACD5A5FB62139B810A53CE500.dec" />
+    <None Include="bin\Debug\decks\Standard\42E67F4813168DBFFB9BB72A7C597D4E.dec" />
+    <None Include="bin\Debug\decks\Standard\4567F45B6B2D26B3CC65B0982429F69B.dec" />
+    <None Include="bin\Debug\decks\Standard\496DEFC292649F239E9CD8C72C5E8304.dec" />
+    <None Include="bin\Debug\decks\Standard\4A2BD59E67E1B38859B27FDEDD7EBDB4.dec" />
+    <None Include="bin\Debug\decks\Standard\4FD30F0F507DA0773694D2310370F827.dec" />
+    <None Include="bin\Debug\decks\Standard\53B64FCC4E8EE795BED594C4929598DA.dec" />
+    <None Include="bin\Debug\decks\Standard\5571322A68CB2EB0BEB5E9C948B5D15C.dec" />
+    <None Include="bin\Debug\decks\Standard\58DB9B8E6179DCC466B749FE61419A1F.dec" />
+    <None Include="bin\Debug\decks\Standard\5ACEF029D8E2157EE32EBCE7C304F0EB.dec" />
+    <None Include="bin\Debug\decks\Standard\5C87571E501EE936EB60D90981C1CA15.dec" />
+    <None Include="bin\Debug\decks\Standard\5EE4545BD3070109FE7BA526039BAD64.dec" />
+    <None Include="bin\Debug\decks\Standard\5F2DDC126990FEBC69B287C00F920987.dec" />
+    <None Include="bin\Debug\decks\Standard\5FB4F83A4475C3A55859F94FFD9481E6.dec" />
+    <None Include="bin\Debug\decks\Standard\616C86420082F703CC380C543914F633.dec" />
+    <None Include="bin\Debug\decks\Standard\62AEDF5C5FB538A422DDDE337D017A05.dec" />
+    <None Include="bin\Debug\decks\Standard\63622C3A52F8686E2012EFAB76FF0102.dec" />
+    <None Include="bin\Debug\decks\Standard\64EAC10E685356E9D3DCC8E24FD12EA6.dec" />
+    <None Include="bin\Debug\decks\Standard\66698C25BDD876FF79B8F7C612DD6C42.dec" />
+    <None Include="bin\Debug\decks\Standard\670C55861674B3F553281BAA10C5D079.dec" />
+    <None Include="bin\Debug\decks\Standard\681259E1AE3D2E5CB1E13686D555D36E.dec" />
+    <None Include="bin\Debug\decks\Standard\6B43473825A24C0C7AB1D083452BA3C7.dec" />
+    <None Include="bin\Debug\decks\Standard\6B59F60AC1BF71718AB53667EB8DF6FD.dec" />
+    <None Include="bin\Debug\decks\Standard\6FB3BECDEB82DA9CFE43CCD036494315.dec" />
+    <None Include="bin\Debug\decks\Standard\70E4F0903F4DBCEEACCFADD5D089C984.dec" />
+    <None Include="bin\Debug\decks\Standard\7380ADE2F621276ABB76567E1ABD4D1C.dec" />
+    <None Include="bin\Debug\decks\Standard\75C5BA4ED59754097E043452CEFAB134.dec" />
+    <None Include="bin\Debug\decks\Standard\76953000D373A0233266673857D54BFC.dec" />
+    <None Include="bin\Debug\decks\Standard\77660A3868E998E1AC204981B7639F49.dec" />
+    <None Include="bin\Debug\decks\Standard\77EA4B0D2CF17F9FFC788AC7E43BAF0A.dec" />
+    <None Include="bin\Debug\decks\Standard\78CE6686F9094CD6EBFFF7735527E08C.dec" />
+    <None Include="bin\Debug\decks\Standard\81551D7A737ADD5A77C360578A1D2B03.dec" />
+    <None Include="bin\Debug\decks\Standard\849402F1C42852788805E9BF7CA68301.dec" />
+    <None Include="bin\Debug\decks\Standard\84A11335331A6AE3DC2E069D7E32B20F.dec" />
+    <None Include="bin\Debug\decks\Standard\85997EF2370E90F1433E659D5BD9B554.dec" />
+    <None Include="bin\Debug\decks\Standard\87755291D871DADBA1C92F128592A298.dec" />
+    <None Include="bin\Debug\decks\Standard\87A986D763F9D6788DF961D3E97911B5.dec" />
+    <None Include="bin\Debug\decks\Standard\87C6BB0012CEC36B2FE55792DAD2E176.dec" />
+    <None Include="bin\Debug\decks\Standard\88873DB39D607725E95ADD0719D762A9.dec" />
+    <None Include="bin\Debug\decks\Standard\8AD0551740613344A19E6168387EEA9B.dec" />
+    <None Include="bin\Debug\decks\Standard\8DE526ABCD4FB7A46B87C2305F33CC2C.dec" />
+    <None Include="bin\Debug\decks\Standard\8F2B09EB95E2C1FCB0B6DBA087117DA3.dec" />
+    <None Include="bin\Debug\decks\Standard\910FCF3A0FEC42A22428161170FF0232.dec" />
+    <None Include="bin\Debug\decks\Standard\942CFCA9AE026F8CA3344D6842D40F78.dec" />
+    <None Include="bin\Debug\decks\Standard\956230481C2A1149979E0D693B76908E.dec" />
+    <None Include="bin\Debug\decks\Standard\98314FF8674F03A18EE0AFF6403D0C29.dec" />
+    <None Include="bin\Debug\decks\Standard\98F1A39201B653F5666F0BD9B9E02670.dec" />
+    <None Include="bin\Debug\decks\Standard\9905C26CDFB92849C126C5B78EE69E90.dec" />
+    <None Include="bin\Debug\decks\Standard\9D694E3849E249A13FC0D3BCCD57C096.dec" />
+    <None Include="bin\Debug\decks\Standard\9E7B5D7AB69006CB51DC9F69C86583DD.dec" />
+    <None Include="bin\Debug\decks\Standard\9F71DA150240970738493D157690C4A7.dec" />
+    <None Include="bin\Debug\decks\Standard\9F88E26AC40D434D24C35631CD968F1C.dec" />
+    <None Include="bin\Debug\decks\Standard\9FBE1B34E44D0EFE9DED8F2B27FAE533.dec" />
+    <None Include="bin\Debug\decks\Standard\A209FFD0C41D76DFE7876564FB20B3AE.dec" />
+    <None Include="bin\Debug\decks\Standard\A4B1D41238FC7220ED424021FB18238E.dec" />
+    <None Include="bin\Debug\decks\Standard\A619841E2D3B5A8F80EF3D42DD8792D4.dec" />
+    <None Include="bin\Debug\decks\Standard\A72B3951B47B895FCEE10572458803E8.dec" />
+    <None Include="bin\Debug\decks\Standard\A79DC0087CD9B8DEEAB457CFC21560BF.dec" />
+    <None Include="bin\Debug\decks\Standard\AA03D85D3792CB906BC8C7E841F4EE56.dec" />
+    <None Include="bin\Debug\decks\Standard\AAF84788CE5F0AB3869D0CCCB1E3C51D.dec" />
+    <None Include="bin\Debug\decks\Standard\AD9B2D79A9F63124F7BFB6AD81634C6B.dec" />
+    <None Include="bin\Debug\decks\Standard\AE767EC6204D0E71EC134A23B98A38D9.dec" />
+    <None Include="bin\Debug\decks\Standard\AF48AC7EA37B86DF6D4614367048F8A4.dec" />
+    <None Include="bin\Debug\decks\Standard\B1C52D4F94D96B5AFFCCB0AB09909654.dec" />
+    <None Include="bin\Debug\decks\Standard\B2394407702EEA73571E67F26F0FFEE0.dec" />
+    <None Include="bin\Debug\decks\Standard\B3D67B1614814271BA4E9EE654E1E767.dec" />
+    <None Include="bin\Debug\decks\Standard\B4E320CF93A206B89A8F22BFBAFB921E.dec" />
+    <None Include="bin\Debug\decks\Standard\BA9B5BF8AF42593A81747D4C14B28E85.dec" />
+    <None Include="bin\Debug\decks\Standard\BC89522C2DB1BB063ED46A48AA0318F9.dec" />
+    <None Include="bin\Debug\decks\Standard\BD5AABDA5743625BFBB64AF8609C4DD8.dec" />
+    <None Include="bin\Debug\decks\Standard\C0B70308F1FDDC592C82A6DC37F06440.dec" />
+    <None Include="bin\Debug\decks\Standard\C20BC008F3A0302CD57E0D72FA8468CE.dec" />
+    <None Include="bin\Debug\decks\Standard\C258F20AE7B76CF31AB291037703609C.dec" />
+    <None Include="bin\Debug\decks\Standard\C2FE012F301FB2649B78E4182DE291CC.dec" />
+    <None Include="bin\Debug\decks\Standard\C3CA48BC4EE12A8F7FE1E7B2D28A9B07.dec" />
+    <None Include="bin\Debug\decks\Standard\C665D1567886557285AF7F777E905D56.dec" />
+    <None Include="bin\Debug\decks\Standard\CB499394CBFAD8A68DA7051F494383AC.dec" />
+    <None Include="bin\Debug\decks\Standard\CDD5EDE0195ADF0FA468EA095C9AF713.dec" />
+    <None Include="bin\Debug\decks\Standard\CE41B218864D2360FA770E718DFC8615.dec" />
+    <None Include="bin\Debug\decks\Standard\D015B01DA439CE01B09AB755AF3DF54B.dec" />
+    <None Include="bin\Debug\decks\Standard\D15CED4251A16AC3877D619B986D7A65.dec" />
+    <None Include="bin\Debug\decks\Standard\D19B131840AA38B4CF79BF17EB2104CF.dec" />
+    <None Include="bin\Debug\decks\Standard\D1A87DB22649BF459065C53AE3808E53.dec" />
+    <None Include="bin\Debug\decks\Standard\D8D7A806E6F26707B835C7EB1B03A0A2.dec" />
+    <None Include="bin\Debug\decks\Standard\DBDA8A3B43D080B58B8678024FD4A8A8.dec" />
+    <None Include="bin\Debug\decks\Standard\DF0AF093C2090FFE74A67409249114BF.dec" />
+    <None Include="bin\Debug\decks\Standard\DF38AA534E5AB85CD42C779C0AAF9F85.dec" />
+    <None Include="bin\Debug\decks\Standard\DFEFAA02545AF3F8B7CFB0A29317AF05.dec" />
+    <None Include="bin\Debug\decks\Standard\E585C11945A88793FE4300404084A4A4.dec" />
+    <None Include="bin\Debug\decks\Standard\E5C2F44FD82DA5822B31054D1F32EDFB.dec" />
+    <None Include="bin\Debug\decks\Standard\E69896AEE0B62B93B61B55B91C1F935B.dec" />
+    <None Include="bin\Debug\decks\Standard\E79F70867DC5CF694A7123BBDA867970.dec" />
+    <None Include="bin\Debug\decks\Standard\E7C39EE5C7C03EFA2DE8C2547592AC3C.dec" />
+    <None Include="bin\Debug\decks\Standard\EB7AFA152763825C7B71928FE2662807.dec" />
+    <None Include="bin\Debug\decks\Standard\ED40FE8DF465145C3E86F911CF2551E0.dec" />
+    <None Include="bin\Debug\decks\Standard\EE9BA16B0FCEED980CAD55A99193D20D.dec" />
+    <None Include="bin\Debug\decks\Standard\F011B7726A7A59A1C0991A0726C8CB8B.dec" />
+    <None Include="bin\Debug\decks\Standard\F1841BC02CA217926DAA7B8035E1F69A.dec" />
+    <None Include="bin\Debug\decks\Standard\F3894498B15F5919E94D13ECE418AE4C.dec" />
+    <None Include="bin\Debug\decks\Standard\F5ED933D72AB86BE791B8ABE17F4408C.dec" />
+    <None Include="bin\Debug\decks\Standard\F878D98A3AD0C34A22F4E897F7A616A9.dec" />
+    <None Include="bin\Debug\decks\Standard\FA2119CC629A965144BDD1ABA36C4443.dec" />
+    <None Include="bin\Debug\decks\Standard\FAF6A3A9EF9CDD357F6F34C45A4BD09A.dec" />
+    <None Include="bin\Debug\decks\Standard\FB2E841FE32F31FA19799A2C8616B581.dec" />
+    <None Include="bin\Debug\decks\Vintage\10B5893D2CFA28EAC7F988102EF07FC8.dec" />
+    <None Include="bin\Debug\decks\Vintage\1906C6FD159B31EAA98E807E11DE09C0.dec" />
+    <None Include="bin\Debug\decks\Vintage\205B89318C6AE1E1E6646CB615E9C731.dec" />
+    <None Include="bin\Debug\decks\Vintage\2434FE32F4FDC7F9ADDAB1862FFB3DF7.dec" />
+    <None Include="bin\Debug\decks\Vintage\401D188CAB134AF93C4C3AFC422DA510.dec" />
+    <None Include="bin\Debug\decks\Vintage\4659DDFAA8D722B6BD00139D204AC2F7.dec" />
+    <None Include="bin\Debug\decks\Vintage\4F9B408B6839C4AFBE3CE48C3F29FD14.dec" />
+    <None Include="bin\Debug\decks\Vintage\555E6F03DC42758F1CD786D213684AD0.dec" />
+    <None Include="bin\Debug\decks\Vintage\5969FA2A300DAB0F44D6A5B1AAC3919B.dec" />
+    <None Include="bin\Debug\decks\Vintage\5997639EF7326791A70D771423FAC29C.dec" />
+    <None Include="bin\Debug\decks\Vintage\64F90120ED6773DE57675E76D8AAD2DD.dec" />
+    <None Include="bin\Debug\decks\Vintage\67DAB1AC30402160F6004841986B35DF.dec" />
+    <None Include="bin\Debug\decks\Vintage\690E6B4520C2961D5BFDBA1311658881.dec" />
+    <None Include="bin\Debug\decks\Vintage\7CCCB180FB7EADDCD5E561A61A7EAC77.dec" />
+    <None Include="bin\Debug\decks\Vintage\8895220D5E5E4B2C6C16EBF2D7D15C48.dec" />
+    <None Include="bin\Debug\decks\Vintage\8BF85B0CD06E24DCF1C8705680540DD2.dec" />
+    <None Include="bin\Debug\decks\Vintage\8CE4E4BB1DE8919EBAC27229BAFA3528.dec" />
+    <None Include="bin\Debug\decks\Vintage\946CCD6DD6FAAB9D33426FEBAD4A430E.dec" />
+    <None Include="bin\Debug\decks\Vintage\9E4061CADA0E381E6CFA4ADBF975E591.dec" />
+    <None Include="bin\Debug\decks\Vintage\B95A84F115EEC539186DB23E681155B8.dec" />
+    <None Include="bin\Debug\decks\Vintage\D93BE9AC1C8635AA750D517E73540D54.dec" />
+    <None Include="bin\Debug\decks\Vintage\DE083F7C4B39EE4A80FAEAF28CDA94A0.dec" />
+    <None Include="bin\Debug\decks\Vintage\E3D2E82DB9FC3F35514D12440CDFD41E.dec" />
+    <None Include="bin\Debug\decks\Vintage\EFE2757146FE337E04ACFAC520C99175.dec" />
+    <None Include="bin\Debug\decks\Vintage\F9DAA0496EAE905C07E51B362CBD0E8E.dec" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bin\Debug\Data\deadLinks.txt" />
+    <Resource Include="bin\Debug\Data\liveLinks.txt" />
+    <Resource Include="bin\Debug\Data\forceUrlList.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

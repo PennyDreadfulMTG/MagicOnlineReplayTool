@@ -1,0 +1,93 @@
+﻿<Window x:Class="MtgoReplayToolWpf.GameEditing.GameEditingView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MtgoReplayToolWpf.GameEditing"
+        mc:Ignorable="d"
+        Title="GameEditingView" Height="800" Width="800"
+        d:DataContext="{d:DesignInstance Type=local:GameEditingViewModel}">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Column="0" Grid.Row="0">Match Id</Label>
+        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Match.Id}"/>
+        <Label Grid.Column="2" Grid.Row="0" Content="{Binding OriginalMatch.Id}"/>
+
+        <Label Grid.Column="0" Grid.Row="1">Game Id</Label>
+        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Game.Id}"/>
+        <Label Grid.Column="2" Grid.Row="1" Content="{Binding OriginalGame.Id}"/>
+
+        <Label Grid.Column="0" Grid.Row="2">Hero</Label>
+        <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Match.Hero}"/>
+        <Label Grid.Column="2" Grid.Row="2" Content="{Binding OriginalMatch.Hero}"/>
+
+        <Label Grid.Column="0" Grid.Row="3">HeroDeck</Label>
+        <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Match.HDeck}"/>
+        <Label Grid.Column="2" Grid.Row="3" Content="{Binding OriginalMatch.HDeck}"/>
+
+        <Label Grid.Column="0" Grid.Row="4">Villain</Label>
+        <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding Match.Villain}"/>
+        <Label Grid.Column="2" Grid.Row="4" Content="{Binding OriginalMatch.Villain}"/>
+
+        <Label Grid.Column="0" Grid.Row="5">VillainDeck</Label>
+        <TextBox Grid.Column="1" Grid.Row="5" Text="{Binding Match.VDeck}"/>
+        <Label Grid.Column="2" Grid.Row="5" Content="{Binding OriginalMatch.VDeck}"/>
+
+        <Label Grid.Column="0" Grid.Row="6">Date</Label>
+        <TextBox Grid.Column="1" Grid.Row="6" Text="{Binding Match.Date}"/>
+        <Label Grid.Column="2" Grid.Row="6" Content="{Binding OriginalMatch.Date}"/>
+
+        <Label Grid.Column="0" Grid.Row="7">GameResult</Label>
+        <TextBox Grid.Column="1" Grid.Row="7" Text="{Binding Game.Result}"/>
+        <Label Grid.Column="2" Grid.Row="7" Content="{Binding OriginalGame.Result}"/>
+
+        <Label Grid.Column="0" Grid.Row="8">MatchResult</Label>
+        <TextBox Grid.Column="1" Grid.Row="8" Text="{Binding Match.Result}"/>
+        <Label Grid.Column="2" Grid.Row="8" Content="{Binding OriginalMatch.Result}"/>
+
+        <Label Grid.Column="0" Grid.Row="9">Preboard</Label>
+        <TextBox Grid.Column="1" Grid.Row="9" Text="{Binding Game.PreBoard}"/>
+        <Label Grid.Column="2" Grid.Row="9" Content="{Binding OriginalGame.PreBoard}"/>
+
+        <Label Grid.Column="0" Grid.Row="10">Turns</Label>
+        <TextBox Grid.Column="1" Grid.Row="10" Text="{Binding Game.Turn}"/>
+        <Label Grid.Column="2" Grid.Row="10" Content="{Binding OriginalGame.Turn}"/>
+
+        <Label Grid.Column="0" Grid.Row="11">HeroOnPlay</Label>
+        <TextBox Grid.Column="1" Grid.Row="11" Text="{Binding Game.OnDraw}"/>
+        <Label Grid.Column="2" Grid.Row="11" Content="{Binding OriginalGame.OnDraw}"/>
+
+        <Label Grid.Column="0" Grid.Row="12">HeroMull</Label>
+        <TextBox Grid.Column="1" Grid.Row="12" Text="{Binding Game.HMull}"/>
+        <Label Grid.Column="2" Grid.Row="12" Content="{Binding OriginalGame.HMull}"/>
+
+        <Label Grid.Column="0" Grid.Row="13">VillainMull</Label>
+        <TextBox Grid.Column="1" Grid.Row="13" Text="{Binding Game.VMull}"/>
+        <Label Grid.Column="2" Grid.Row="13" Content="{Binding OriginalGame.VMull}"/>
+
+        <RichTextBox Name="RichTextBox" Grid.Column="3" Grid.Row="0" Grid.RowSpan="16"  Margin="10" VerticalScrollBarVisibility="Auto"/>
+    </Grid>
+</Window>

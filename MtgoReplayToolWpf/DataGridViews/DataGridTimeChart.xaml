@@ -1,0 +1,67 @@
+﻿<TabItem x:Class="MtgoReplayToolWpf.DataGridViews.DataGridTimeChart"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MtgoReplayToolWpf.DataGridViews"
+             xmlns:dataGridViewModels="clr-namespace:MtgoReplayToolWpf.DataGridViewModels"
+            xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+            mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+            d:DataContext="{d:DesignInstance Type=dataGridViewModels:DataGridTimeChartViewModel}">
+    <TabItem.Resources>
+        <local:IndexToDateLabelConverter x:Key="IndexToDateLabelConverter"/>
+        <Style x:Key="LineDataPointStyle" TargetType="{x:Type chartingToolkit:LineDataPoint}">
+            <Setter Property="Background" Value="Blue" ></Setter>
+            <Setter Property="Opacity" Value="0" />
+        </Style>
+    </TabItem.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>    
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <TextBlock Margin="3">Gaussian Filter Sigma</TextBlock>
+            <TextBox Name="TextBoxFilterSize" Text="50" Margin="3" Width="40"></TextBox>
+        </StackPanel>
+        <chartingToolkit:Chart Grid.Row="1" Name="ChartWinOverTime">
+            <chartingToolkit:LineSeries Name="TimeSeriesLineChart" DependentValuePath="Value" 
+            IndependentValuePath="Key" 
+            ItemsSource="{Binding TimeSeriesList}"
+            DataPointStyle="{StaticResource LineDataPointStyle}">
+                
+                <!--<chartingToolkit:LineSeries.IndependentAxis>
+                    <chartingToolkit:DateTimeAxis Orientation="X" Title="Date" Interval="1" IntervalType="Months"></chartingToolkit:DateTimeAxis>
+                </chartingToolkit:LineSeries.IndependentAxis>-->
+            </chartingToolkit:LineSeries>
+            <chartingToolkit:Chart.Axes>
+                <chartingToolkit:LinearAxis Orientation="Y" Minimum="0" Maximum="1" ShowGridLines="True"/>
+                <chartingToolkit:LinearAxis Orientation="X" 
+                                    Title="Date"
+                                    ShowGridLines="True">
+                    <chartingToolkit:LinearAxis.AxisLabelStyle>
+                        <Style TargetType="chartingToolkit:AxisLabel">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="chartingToolkit:AxisLabel">
+                                        <TextBlock >
+                                            <TextBlock.Text>
+                                                <MultiBinding Converter="{StaticResource IndexToDateLabelConverter}">
+                                                    <Binding />
+                                                    <Binding RelativeSource="{RelativeSource Mode=FindAncestor,
+                                                         AncestorType={x:Type chartingToolkit:Chart}}" Path="DataContext.LabelList" UpdateSourceTrigger="PropertyChanged" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </chartingToolkit:LinearAxis.AxisLabelStyle>
+                </chartingToolkit:LinearAxis>
+            </chartingToolkit:Chart.Axes>
+        </chartingToolkit:Chart>
+    </Grid>
+</TabItem>

@@ -1,0 +1,28 @@
+﻿<TabItem x:Class="MtgoReplayToolWpf.DataGridViews.DataGridMull"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+         xmlns:local="clr-namespace:MtgoReplayToolWpf.DataGridViews"
+         xmlns:dataGridViewModels="clr-namespace:MtgoReplayToolWpf.DataGridViewModels"
+         mc:Ignorable="d" 
+         d:DesignHeight="300" d:DesignWidth="300"
+         d:DataContext="{d:DesignInstance Type=dataGridViewModels:DataGridMullViewModel}">
+    <DataGrid ItemsSource="{Binding DataView}" AutoGenerateColumns="False" AlternationCount="2" AlternatingRowBackground="#E3E3E3">
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="{Binding Path=Header}" Width="Auto" IsReadOnly="True" Binding="{Binding Path=Number}" SortDirection="Descending"/>
+            <DataGridTextColumn Header="% Games on X" Width="Auto" IsReadOnly="True" Binding="{Binding Path=PrevalenceAt, StringFormat=N2}" />
+            <DataGridTextColumn Header="Game Win % on X" Width="Auto" IsReadOnly="True" Binding="{Binding Path=WinrateAt, StringFormat=N2}" />
+            <DataGridTextColumn Header="% Games on &lt;= X" Width="Auto" IsReadOnly="True" Binding="{Binding Path=PrevalenceAtLower, StringFormat=N2}" />
+            <DataGridTextColumn Header="Game Win % on &lt;= X" Width="Auto" IsReadOnly="True" Binding="{Binding Path=WinrateAtLower, StringFormat=N2}" />
+            <DataGridTextColumn Header="% Games on >= X" Width="Auto" IsReadOnly="True" Binding="{Binding Path=PrevalenceAtHigher, StringFormat=N2}" />
+            <DataGridTextColumn Header="Game Win % on >= X" Width="Auto" IsReadOnly="True" Binding="{Binding Path=WinrateAtHigher, StringFormat=N2}" />
+            <DataGridTextColumn Header="Games on X" Width="Auto" IsReadOnly="True" Binding="{Binding Path=GamesAt}" />
+            <DataGridTextColumn Header="Games Won on X" Width="Auto" IsReadOnly="True" Binding="{Binding Path=GamesWonAt}" />
+            <DataGridTextColumn Header="Games on &lt;= X" Width="Auto" IsReadOnly="True" Binding="{Binding Path=GamesAtLower}" />
+            <DataGridTextColumn Header="Games Won on &lt;= X" Width="Auto" IsReadOnly="True" Binding="{Binding Path=GamesWonAtLower}" />
+            <DataGridTextColumn Header="Games on >= X" Width="Auto" IsReadOnly="True" Binding="{Binding Path=GamesAtHigher}" />
+            <DataGridTextColumn Header="Games Won on >= X" Width="Auto" IsReadOnly="True" Binding="{Binding Path=GamesWonAtHigher}" />
+        </DataGrid.Columns>
+    </DataGrid>
+</TabItem>

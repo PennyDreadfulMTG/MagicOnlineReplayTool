@@ -1,0 +1,184 @@
+﻿<Window x:Class="MtgoReplayToolWpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MtgoReplayToolWpf"
+        xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        xmlns:dataGridViews="clr-namespace:MtgoReplayToolWpf.DataGridViews"
+        mc:Ignorable="d"
+        Title="Magic Online Replay Tool 2.1.128a" 
+        Icon="resources/mort.ico"
+        Height="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}, Converter={local:RatioConverter}, ConverterParameter='0.88' }" 
+        Width="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={local:RatioConverter}, ConverterParameter='0.88' }"
+        Top="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}, Converter={local:RatioConverter}, ConverterParameter='0.11' }" 
+        Left="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={local:RatioConverter}, ConverterParameter='0.11' }">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Width" Value="180" />
+            <Setter Property="Margin" Value="3" />
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="3" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="3" />
+        </Style>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <GroupBox Grid.Column="0" Header="Load new replays" >
+                <StackPanel>
+                    <Button Name="ButtonScanMtgoReplayFolder" Content="Scan MTGO replay folder" Click="ButtonScanMtgoReplayFolder_OnClick"/>
+                    <Button Name="ButtonOpenCustomReplayFolder" Content="Choose replay folder" Click="ButtonOpenCustomReplayFolder_OnClick"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Grid.Column="1" Header="Save Data" >
+                <StackPanel>
+                    <Button Name="ButtonSaveData" Content="Save Data" Click="ButtonSaveData_OnClick"/>
+                    <Label Name="LabelHasDataChanges" Content="You have unsaved changes!" Foreground="Red" FontWeight="Bold" 
+                           Visibility="{Binding Data.HasUnsavedChanges, Converter={StaticResource BooleanToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}"
+                           HorizontalContentAlignment="Center"/>
+                    <Label Name="LabelHasNoDataChanges" Content="You have no unsaved changes." Foreground="Green" FontWeight="Bold"
+                           Visibility="{Binding Data.HasNoUnsavedChanges, Converter={StaticResource BooleanToVisibilityConverter}, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}"
+                            HorizontalContentAlignment="Center"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Grid.Column="2" Header="">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <ProgressBar Grid.Row="0" Name="ProgressBar" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="3"/>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal">
+                        <Button Name="ButtonUpdateGrid" Content="Update Grid" Click="ButtonUpdateGrid_OnClick"/>
+                        <Button Name="ButtonUploadData" Content="Upload Replay Data" Click="ButtonUploadData_OnClick"/>                        
+                        <Button Name="ButtonReclassifyDecks" Content="Reclassify Decks" Click="ButtonReclassifyDecks_Click"/>
+                        <Button Name="ButtonLearnDecks" Content="Learn Decks" Click="ButtonLearnDecks_Click"/>
+                    </StackPanel>
+                </Grid>
+            </GroupBox>
+        </Grid>
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <StackPanel Orientation="Vertical">
+                <Label>From</Label>
+                <TextBox Name="ComboBoxStart" Text="YYYY-MM-DD"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <Label>To</Label>
+                <TextBox Name="ComboBoxEnd" Text="YYYY-MM-DD"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <Label>Format</Label>
+                <ComboBox Name="ComboBoxFormat" IsEditable="True">
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel/>
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <Label>Player</Label>
+                <ComboBox Name="ComboBoxPlayer" IsEditable="True">
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel/>
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <Label>Deck</Label>
+                <ComboBox Name="ComboBoxDeck" IsEditable="True">
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel/>
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <Label>Opponent</Label>
+                <ComboBox Name="ComboBoxOpponent" IsEditable="True">
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel/>
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <Label>Opponent's Deck</Label>
+                <ComboBox Name="ComboBoxOpponentsDeck" IsEditable="True">
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel/>
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <Label>On the Play</Label>
+                <ComboBox Name="ComboBoxOnThePlay" IsEditable="True">
+                    <ComboBoxItem>Yes</ComboBoxItem>
+                    <ComboBoxItem>No</ComboBoxItem>
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel/>
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <Label>Postboard</Label>
+                <ComboBox Name="ComboBoxPostboard" IsEditable="True">
+                    <ComboBoxItem>Yes</ComboBoxItem>
+                    <ComboBoxItem>No</ComboBoxItem>
+                    <ComboBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel/>
+                        </ItemsPanelTemplate>
+                    </ComboBox.ItemsPanel>
+                </ComboBox>
+            </StackPanel>
+            <Label Name="Label"/>
+        </StackPanel>
+        <TabControl Name="TabControl" Grid.Row="2">
+            <dataGridViews:DataGridDecks x:Name="DataGridDecks" Header="Decks"/>
+            <dataGridViews:DataGridDecks x:Name="DataGridPlayers" Header="Players"/>
+            <dataGridViews:DataGridDecks x:Name="DataGridVsDecks" Header="Opponent's Decks"/>
+            <dataGridViews:DataGridDecks x:Name="DataGridVsPlayers" Header="Opponents"/>
+            <dataGridViews:DataGridMull x:Name="DataGridMulligan" Header="Mulligans"/>
+            <dataGridViews:DataGridMull x:Name="DataGridTurns" Header="Turns"/>
+            <dataGridViews:DataGridTimeChart x:Name="DataGridTimeChart" Header="Win Over Time">
+                
+            </dataGridViews:DataGridTimeChart>
+            <!--<TabItem Header="Game List">
+                <DataGrid Name="DataGridGameList">
+                </DataGrid>
+            </TabItem>-->
+            <TabItem Header="Cards">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <dataGridViews:DataGridMatchup x:Name="DataGridMatchup" />
+                </ScrollViewer>
+            </TabItem>
+            <dataGridViews:DataGridGameList x:Name="DataGridGameList" Header="GameList"/>
+            <dataGridViews:DataGridDeckDefinitionsViewer x:Name="DataGridDefinitions" Header="DeckDefinitions"/>
+            <dataGridViews:DataGridDuplicates x:Name="DataGridDuplicates" Header="DeckDuplicates"/>
+        </TabControl>
+    </Grid>
+</Window>

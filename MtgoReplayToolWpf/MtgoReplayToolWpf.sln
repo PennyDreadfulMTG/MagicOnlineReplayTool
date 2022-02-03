@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2003
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MtgoReplayToolWpf", "MtgoReplayToolWpf.csproj", "{869F1AE3-C57E-49FF-AC6F-DD2E2DF3D47F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{869F1AE3-C57E-49FF-AC6F-DD2E2DF3D47F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{869F1AE3-C57E-49FF-AC6F-DD2E2DF3D47F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{869F1AE3-C57E-49FF-AC6F-DD2E2DF3D47F}.Debug|x64.ActiveCfg = Debug|x64
+		{869F1AE3-C57E-49FF-AC6F-DD2E2DF3D47F}.Debug|x64.Build.0 = Debug|x64
+		{869F1AE3-C57E-49FF-AC6F-DD2E2DF3D47F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{869F1AE3-C57E-49FF-AC6F-DD2E2DF3D47F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{869F1AE3-C57E-49FF-AC6F-DD2E2DF3D47F}.Release|x64.ActiveCfg = Release|x64
+		{869F1AE3-C57E-49FF-AC6F-DD2E2DF3D47F}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7A802552-F604-498F-8934-B3500A77C101}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://fheldprivatetfs.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = MtgoReplayToolWpf.csproj
+		SccLocalPath1 = .
+	EndGlobalSection
+EndGlobal
