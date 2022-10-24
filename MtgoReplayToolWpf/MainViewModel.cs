@@ -112,7 +112,7 @@ namespace MtgoReplayToolWpf
             Decks = decks;
             Data.LoadData(loadedMatches);
 #if DEBUG
-            Metagame metagame = new Metagame(Data);
+            //Metagame metagame = new Metagame(Data);
 #endif   
             MainWindow.Dispatcher.Invoke(() =>
             {

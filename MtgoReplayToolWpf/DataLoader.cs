@@ -81,11 +81,14 @@ namespace MtgoReplayToolWpf
             LoadWindow.Close();
         }
 
-        private void loadWorker_DoWork(Object sender, DoWorkEventArgs e)
+        private void loadWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             try
             {
-                var progressString = "Loading Decks... ";
+                var progressString = "Checking for updates... ";
+                DeckHelper.UpdateZips(LoadWorker, ref progressString);
+
+                progressString += "Loading Decks... ";
                 Decks = DeckHelper.CrawlDecks(LoadWorker, ref progressString);
 
                 progressString += Environment.NewLine + "Loading Data... ";

@@ -1,21 +1,28 @@
-﻿using MTGOReplayToolWpf;
+﻿using MathNet.Numerics.Distributions;
+using MtgoReplayToolWpf.MiscHelpers;
+using MTGOReplayToolWpf;
+using Newtonsoft.Json;
 using Sentry;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Net;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace MtgoReplayToolWpf
 {
     public static class DeckHelper
     {
-        public static readonly String DeckPath = AppDomain.CurrentDomain.BaseDirectory + "decks";
+        public static readonly string DeckPath = AppDomain.CurrentDomain.BaseDirectory + "decks";
 
-        public static Dictionary<String, Format> CrawlDecks(BackgroundWorker backgroundWorker, ref String progressString)
+        public static Dictionary<string, Format> CrawlDecks(BackgroundWorker backgroundWorker, ref string progressString)
         {
-            var returnValue = new Dictionary<String, Format>();
+            var returnValue = new Dictionary<string, Format>();
             var folders = Directory.GetDirectories(DeckPath);
 
             foreach (var format in folders)
@@ -47,8 +54,59 @@ namespace MtgoReplayToolWpf
 
             return returnValue;
         }
-        
-        private static void MergeDecksInternal(List<String> decksToMerge, Dictionary<String, Format> decks, List<NewMatch> matches, String separator)
+
+        public static void UpdateZips(BackgroundWorker backgroundWorker, ref string progressString)
+        {
+            var assets = GithubHelper.FetchReleaseAssets("PennyDreadfulMTG", "MORT-Decks");
+            var hashes = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(assets.First(a => a.name == "hashes.json").GetContents());
+
+            var zips = Directory.GetFiles(DeckPath, "*.zip");
+            var progress = 0;
+            foreach (var zip in zips)
+            {
+                string zipName = Path.GetFileName(zip);
+                if (!hashes.ContainsKey(zipName))
+                    continue;
+
+                string localHash;
+
+                using (FileStream fs = new FileStream(zip, FileMode.Open))
+                using (BufferedStream bs = new BufferedStream(fs))
+                {
+                    using (SHA1Managed sha1 = new SHA1Managed())
+                    {
+                        byte[] hash = sha1.ComputeHash(bs);
+                        StringBuilder formatted = new StringBuilder(2 * hash.Length);
+                        foreach (byte b in hash)
+                        {
+                            formatted.AppendFormat("{0:X2}", b);
+                        }
+                        localHash = formatted.ToString();
+                    }
+                }
+                progress++;
+                if (!hashes[zipName]["sha1"].Equals(localHash, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    progressString += Environment.NewLine + $"    Updating format: {zipName}";
+                    string copyOfProgressString = progressString;
+                    backgroundWorker.ReportProgress(progress, copyOfProgressString);
+                    assets.First(a => a.name == zipName).Download(DeckPath);
+                    string dirName = Path.Combine(DeckPath, Path.GetFileNameWithoutExtension(zip));
+                    using (var archive = ZipFile.OpenRead(zip))
+                    {
+                        foreach (var deck in archive.Entries)
+                        {
+                            deck.ExtractToFile(Path.Combine(dirName, deck.Name), true);
+                        }
+
+                    }
+
+                }
+                
+            }
+        }
+
+        private static void MergeDecksInternal(List<String> decksToMerge, Dictionary<string, Format> decks, List<NewMatch> matches, String separator)
         {
             var newFormatName = string.Empty;
             var newDeckName = string.Empty;
@@ -189,6 +247,8 @@ namespace MtgoReplayToolWpf
                         if (index > 0)
                         {
                             var key = line.Substring(index + 1, line.Length - index - 1);
+                            if (key == "Sideboard") 
+                                continue;
                             var value = Convert.ToDouble(line.Substring(0, index));
                             if (definition.ContainsKey(key))
                             {
