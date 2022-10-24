@@ -1,5 +1,6 @@
 ﻿using MtgoReplayToolWpf.MiscHelpers;
 using System;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -13,6 +14,12 @@ namespace MtgoReplayToolWpf
         public MainWindow()
         {            
             InitializeComponent();
+            if (!Directory.Exists(DeckHelper.DeckPath))
+            {
+                Directory.CreateDirectory(DeckHelper.DeckPath);
+                new FormatSelector().ShowDialog();
+            }
+
             MainViewModel = new MainViewModel(this);
             this.DataContext = MainViewModel;
             Visibility = Visibility.Hidden;
@@ -94,6 +101,20 @@ namespace MtgoReplayToolWpf
         private void ButtonLearnDecks_Click(object sender, RoutedEventArgs e)
         {
             MainViewModel.LearnDecks();
+        }
+
+        private void ButtonInstallFormats_Click(object sender, RoutedEventArgs e)
+        {
+            var reboot = new FormatSelector().ShowDialog();
+            if (reboot.HasValue && reboot.Value)
+            {
+                MainViewModel = new MainViewModel(this);
+                this.DataContext = MainViewModel;
+                Visibility = Visibility.Hidden;
+                IsEnabled = false;
+                Hide();
+            }
+
         }
     }
 }

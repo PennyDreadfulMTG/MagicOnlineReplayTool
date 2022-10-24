@@ -58,7 +58,7 @@ namespace MtgoReplayToolWpf
         public static void UpdateZips(BackgroundWorker backgroundWorker, ref string progressString)
         {
             var assets = GithubHelper.FetchReleaseAssets("PennyDreadfulMTG", "MORT-Decks");
-            var hashes = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(assets.First(a => a.name == "hashes.json").GetContents());
+            var hashes = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(assets.First(a => a.Name == "hashes.json").GetContents());
 
             var zips = Directory.GetFiles(DeckPath, "*.zip");
             var progress = 0;
@@ -90,19 +90,25 @@ namespace MtgoReplayToolWpf
                     progressString += Environment.NewLine + $"    Updating format: {zipName}";
                     string copyOfProgressString = progressString;
                     backgroundWorker.ReportProgress(progress, copyOfProgressString);
-                    assets.First(a => a.name == zipName).Download(DeckPath);
-                    string dirName = Path.Combine(DeckPath, Path.GetFileNameWithoutExtension(zip));
-                    using (var archive = ZipFile.OpenRead(zip))
-                    {
-                        foreach (var deck in archive.Entries)
-                        {
-                            deck.ExtractToFile(Path.Combine(dirName, deck.Name), true);
-                        }
-
-                    }
-
+                    assets.First(a => a.Name == zipName).Download(DeckPath);
+                    Unzip(zip);
                 }
-                
+
+            }
+        }
+
+        public static void Unzip(string zip)
+        {
+            string dirName = Path.Combine(DeckPath, Path.GetFileNameWithoutExtension(zip));
+            if (!Directory.Exists(dirName))
+                Directory.CreateDirectory(dirName);
+
+            using (var archive = ZipFile.OpenRead(zip))
+            {
+                foreach (var deck in archive.Entries)
+                {
+                    deck.ExtractToFile(Path.Combine(dirName, deck.Name), true);
+                }
             }
         }
 

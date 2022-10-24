@@ -20,12 +20,12 @@ namespace MtgoReplayToolWpf.MiscHelpers
 
         public class Asset
         {
-            public string name;
+            public string Name;
             public string browser_download_url;
 
             public string GetContents()
             {
-                var myWebRequest = (HttpWebRequest)WebRequest.Create(this.browser_download_url);
+                var myWebRequest = (HttpWebRequest)WebRequest.Create(browser_download_url);
                 myWebRequest.UserAgent = "MagicOnlineReplayTool";
                 var myWebResponse = myWebRequest.GetResponse();
                 var responseStream = myWebResponse.GetResponseStream();
@@ -35,17 +35,29 @@ namespace MtgoReplayToolWpf.MiscHelpers
                 return responseString;
             }
 
-            internal void Download(string deckPath)
+            public string Download(string directory)
             {
-                var myWebRequest = (HttpWebRequest)WebRequest.Create(this.browser_download_url);
+                var myWebRequest = (HttpWebRequest)WebRequest.Create(browser_download_url);
                 myWebRequest.UserAgent = "MagicOnlineReplayTool";
                 var myWebResponse = myWebRequest.GetResponse();
                 var responseStream = myWebResponse.GetResponseStream();
-    
-                using (var file = File.OpenWrite(Path.Combine(deckPath, this.name)))
+
+                string path = Path.Combine(directory, Name);
+                using (var file = File.OpenWrite(path))
                 {
                     responseStream.CopyTo(file);
                 }
+                return path;
+            }
+
+            public bool Exists(string directory)
+            {
+                return File.Exists(Path.Combine(directory, Name));
+            }
+
+            public override string ToString()
+            {
+                return Name;
             }
         }
 

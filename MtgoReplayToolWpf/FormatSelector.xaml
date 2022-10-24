@@ -1,0 +1,17 @@
+﻿<Window x:Class="MtgoReplayToolWpf.FormatSelector"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MtgoReplayToolWpf" 
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="FormatSelector" Height="492" Width="385" Initialized="Window_Initialized">
+    <Grid Margin="0,0,0,0">
+        <xctk:CheckListBox x:Name="FormatsList" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,29,0,40"/>
+        <Button x:Name="InstallButton" Content="Install" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Height="25" Width="70" Click="InstallButton_Click" />
+        <Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Height="25" Width="70" Click="CancelButton_Click"/>
+        <Label Content="Please select all formats you have replays for:" HorizontalAlignment="Left" Margin="7,3,0,0" VerticalAlignment="Top"/>
+        <ProgressBar x:Name="progress" IsIndeterminate="True" HorizontalAlignment="Left" Height="23" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="365" Visibility="Hidden"/>
+    </Grid>
+</Window>

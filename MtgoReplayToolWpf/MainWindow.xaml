@@ -68,6 +68,7 @@
                         <Button Name="ButtonUploadData" Content="Upload Replay Data" Click="ButtonUploadData_OnClick"/>                        
                         <Button Name="ButtonReclassifyDecks" Content="Reclassify Decks" Click="ButtonReclassifyDecks_Click"/>
                         <Button Name="ButtonLearnDecks" Content="Learn Decks" Click="ButtonLearnDecks_Click"/>
+                        <Button Name="ButtonInstallFormats" Content="Add/Remove Formats" Click="ButtonInstallFormats_Click" />
                     </StackPanel>
                 </Grid>
             </GroupBox>
