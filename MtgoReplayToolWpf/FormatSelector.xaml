@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MtgoReplayToolWpf" 
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="FormatSelector" Height="492" Width="385" Initialized="Window_Initialized">
+        Title="FormatSelector" Height="492" Width="385" Initialized="Window_Initialized" ResizeMode="NoResize">
     <Grid Margin="0,0,0,0">
         <xctk:CheckListBox x:Name="FormatsList" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,29,0,40"/>
         <Button x:Name="InstallButton" Content="Install" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Height="25" Width="70" Click="InstallButton_Click" />

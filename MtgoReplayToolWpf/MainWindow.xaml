@@ -7,7 +7,7 @@
         xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
         xmlns:dataGridViews="clr-namespace:MtgoReplayToolWpf.DataGridViews"
         mc:Ignorable="d"
-        Title="Magic Online Replay Tool 2.1.128a" 
+        Title="Magic Online Replay Tool 2.2.0" 
         Icon="resources/mort.ico"
         Height="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}, Converter={local:RatioConverter}, ConverterParameter='0.88' }" 
         Width="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={local:RatioConverter}, ConverterParameter='0.88' }"
