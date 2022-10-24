@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -71,6 +72,7 @@ namespace MtgTop8Crawler
             const String deadLinksFileName = "deadLinks.txt";
             const String forceUrlListFilename = "forceUrlList.txt";
 
+            GitPull();
 
             Stack<String> liveUrlStack = ReadLinksFromFile(DataPath, liveLinksFileName);
             Stack<String> deadUrlStack = ReadLinksFromFile(DataPath, deadLinksFileName);
@@ -104,7 +106,7 @@ namespace MtgTop8Crawler
                             + "Links TODO: " + liveUrlStack.Count;
                 });
 
-                String url = liveUrlStack.Pop();
+                var url = liveUrlStack.Pop();
 
                 if (!urlWhitelist.Contains(url))
                 {
@@ -144,6 +146,26 @@ namespace MtgTop8Crawler
                 WriteToFile(liveUrlStack, DataPath, liveLinksFileName);
                 WriteToFile(deadUrlStack, DataPath, deadLinksFileName);
             }
+            GitPush();
+        }
+
+        private void GitPull()
+        {
+            Process git;
+            if (!Directory.Exists(DataPath))
+                git = Process.Start("git", $"clone https://github.com/PennyDreadfulMTG/MORT-Decks.git {DataPath}");
+            else
+                git = Process.Start(new ProcessStartInfo("git", "pull") { WorkingDirectory = DataPath });
+            git.WaitForExit();
+
+        }
+
+        private void GitPush()
+        {
+            Process.Start(new ProcessStartInfo("git", "add .") { WorkingDirectory = DataPath }).WaitForExit();
+            Process.Start(new ProcessStartInfo("git", $"commit -m \"{LabelLog.Tag} new decks\"") { WorkingDirectory = DataPath }).WaitForExit();
+            Process.Start(new ProcessStartInfo("git", "push") { WorkingDirectory = DataPath }).WaitForExit();
+
         }
 
         private void WriteToFile(Stack<String> urlStack, String path, String fileName)
@@ -241,7 +263,7 @@ namespace MtgTop8Crawler
                 LabelLog.Tag = 1 + (Int32)LabelLog.Tag;
             });
 
-            var formatPath = AppDomain.CurrentDomain.BaseDirectory + @"\decks\" + format + @"\";
+            var formatPath = DataPath + @"\decks\" + format + @"\";
 
             if (!Directory.Exists(formatPath))
             {

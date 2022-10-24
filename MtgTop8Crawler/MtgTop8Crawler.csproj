@@ -655,9 +655,9 @@
     <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="bin\Debug\Data\deadLinks.txt" />
-    <Resource Include="bin\Debug\Data\liveLinks.txt" />
-    <Resource Include="bin\Debug\Data\forceUrlList.txt" />
+    <None Include="bin\Debug\Data\deadLinks.txt" />
+    <None Include="bin\Debug\Data\liveLinks.txt" />
+    <None Include="bin\Debug\Data\forceUrlList.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
