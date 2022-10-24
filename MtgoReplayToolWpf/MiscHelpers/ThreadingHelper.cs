@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sentry;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -17,6 +18,7 @@ namespace MtgoReplayToolWpf
                 }
                 catch (Exception e)
                 {
+                    SentrySdk.CaptureException(e);
                     tcs.SetException(e);
                 }
             });

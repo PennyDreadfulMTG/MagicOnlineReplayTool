@@ -1,4 +1,5 @@
 ﻿using MTGOReplayToolWpf;
+using Sentry;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -204,6 +205,7 @@ namespace MtgoReplayToolWpf
             }
             catch (Exception e)
             {
+                SentrySdk.CaptureException(e);
                 Console.WriteLine("The file could not be read:");
                 Console.WriteLine(e.Message);
             }

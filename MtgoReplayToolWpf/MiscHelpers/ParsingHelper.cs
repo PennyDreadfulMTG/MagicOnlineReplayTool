@@ -1,4 +1,5 @@
 ﻿using MtgoReplayToolWpf.GamePromptResult;
+using Sentry;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -25,6 +26,7 @@ namespace MTGOReplayToolWpf
             }
             catch (Exception e)
             {
+                SentrySdk.CaptureException(e);
                 MessageBox.Show("The file could not be read:" + Environment.NewLine + e.Message);
             }
 
@@ -145,6 +147,7 @@ namespace MTGOReplayToolWpf
             }
             catch (Exception e)
             {
+                SentrySdk.CaptureException(e);
                 MessageBox.Show("An Exception occured while trying to process file: " + matchPath + Environment.NewLine + e.Message);
             }
 

@@ -1,4 +1,5 @@
 ﻿using MTGOReplayToolWpf;
+using Sentry;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -65,6 +66,7 @@ namespace MtgoReplayToolWpf
             }
             catch (Exception ex)
             {
+                SentrySdk.CaptureException(ex);
                 MessageBox.Show(ex.Message + Environment.NewLine + ex.StackTrace);
             }
             
@@ -102,7 +104,9 @@ namespace MtgoReplayToolWpf
             }
             catch (Exception ex)
             {
+                SentrySdk.CaptureException(ex);
                 MessageBox.Show(ex.Message + Environment.NewLine + ex.StackTrace);
+
             }
         }
 
