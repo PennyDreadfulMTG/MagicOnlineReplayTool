@@ -63,7 +63,9 @@ namespace MtgTop8Crawler
 
         private async void StartStuffAsync(CancellationToken token)
         {
+            var t = Task.Run(() => DailyPush(token), token);
             await Task.Run(() => CrawlRootAsync(RootUrl, token), token);
+
         }
 
         private void CrawlRootAsync(String rootUrl, CancellationToken token)
@@ -163,9 +165,19 @@ namespace MtgTop8Crawler
         private void GitPush()
         {
             Process.Start(new ProcessStartInfo("git", "add .") { WorkingDirectory = DataPath }).WaitForExit();
-            Process.Start(new ProcessStartInfo("git", $"commit -m \"{LabelLog.Tag} new decks\"") { WorkingDirectory = DataPath }).WaitForExit();
+            Process.Start(new ProcessStartInfo("git", $"commit -m \"Update\"") { WorkingDirectory = DataPath }).WaitForExit();
             Process.Start(new ProcessStartInfo("git", "push") { WorkingDirectory = DataPath }).WaitForExit();
 
+        }
+
+        private void DailyPush(CancellationToken token)
+        {
+            while (!token.IsCancellationRequested)
+            {
+                Thread.Sleep(TimeSpan.FromDays(1));
+                if (!token.IsCancellationRequested)
+                    GitPush();
+            }
         }
 
         private void WriteToFile(Stack<String> urlStack, String path, String fileName)
