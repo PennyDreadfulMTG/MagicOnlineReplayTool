@@ -79,7 +79,6 @@ namespace MtgoReplayToolWpf
                 if (!item.Exists(DeckHelper.DeckPath))
                 {
                     var zip = item.Download(DeckHelper.DeckPath);
-                    DeckHelper.Unzip(zip);
                 }
             }
 
@@ -87,7 +86,7 @@ namespace MtgoReplayToolWpf
             foreach (var item in uninstall)
             {
                 File.Delete(Path.Combine(DeckHelper.DeckPath, item.Name));
-                Directory.Delete(Path.Combine(DeckHelper.DeckPath, Path.GetFileNameWithoutExtension(item.Name)), true);
+                //Directory.Delete(Path.Combine(DeckHelper.DeckPath, Path.GetFileNameWithoutExtension(item.Name)), true);
             }
         }
 

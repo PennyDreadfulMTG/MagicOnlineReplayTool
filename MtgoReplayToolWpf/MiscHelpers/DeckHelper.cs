@@ -18,10 +18,13 @@ namespace MtgoReplayToolWpf
 {
     public static class DeckHelper
     {
-        public static readonly string DeckPath = AppDomain.CurrentDomain.BaseDirectory + "decks";
+        public static readonly string DeckPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "decks");
 
         public static Dictionary<string, Format> CrawlDecks(BackgroundWorker backgroundWorker, ref string progressString)
         {
+            if (!Directory.Exists(DeckPath))
+                Directory.CreateDirectory(DeckPath);
+
             var returnValue = new Dictionary<string, Format>();
             var folders = Directory.GetDirectories(DeckPath);
 
@@ -50,6 +53,35 @@ namespace MtgoReplayToolWpf
 
                 progressString += $" - {files.Count()} / {files.Count()}";
                 backgroundWorker.ReportProgress(0, progressString);
+            }
+
+            var zipfiles = Directory.GetFiles(DeckPath, "*.zip");
+            foreach (var file in zipfiles)
+            {
+                var formatName = Path.GetFileNameWithoutExtension(file);
+                if (formatName == "hidden") continue;
+                if (!returnValue.ContainsKey(formatName))
+                    returnValue.Add(formatName, new Format(formatName));
+
+                progressString += Environment.NewLine + $"    Loading format: {formatName}.zip";
+                backgroundWorker.ReportProgress(0, progressString);
+                using (var archive = ZipFile.OpenRead(file))
+                {
+                    var progress = 0;
+                    var copyOfProgressString = progressString;
+                    var decks = archive.Entries.Select(e => {
+                        var deck = GetDeckFromZipEntry(e);
+                        lock (backgroundWorker)
+                        {
+                            progress++;
+                            backgroundWorker.ReportProgress(0, copyOfProgressString + $" - {progress} / {archive.Entries.Count}");
+                        }
+                        return deck;
+                    });
+
+                    decks = decks.Where(x => x.Definition.Keys.Count > 0);
+                    returnValue[formatName].Decks.AddRange(decks);
+                }
             }
 
             return returnValue;
@@ -208,65 +240,13 @@ namespace MtgoReplayToolWpf
             return resultDecks;
         }
 
-        public static Deck GetDeckFromFile(String path)
+        public static Deck GetDeckFromZipEntry(ZipArchiveEntry entry)
         {
-            var line = String.Empty;
-            var definition = new Dictionary<String, Double>();
-            var date = new DateTime();
-            var format = String.Empty;
-            var deckName = String.Empty;
-            var manuallyEdited = false;
-
             try
             {
-                using (var sr = new StreamReader(path))
+                using (var sr = new StreamReader(entry.Open()))
                 {
-                    // Date
-                    if (!sr.EndOfStream)
-                    {
-                        line = sr.ReadLine();
-                        date = DateTime.ParseExact(line, "s", CultureInfo.InvariantCulture);
-                    }
-
-                    // Format
-                    if (!sr.EndOfStream)
-                    {
-                        format = sr.ReadLine();
-                    }
-
-                    // Deckname
-                    if (!sr.EndOfStream)
-                    {
-                        deckName = sr.ReadLine();
-                        if (deckName.StartsWith("***"))
-                        {
-                            manuallyEdited = true;
-                            deckName = deckName.Remove(0, 3);
-                        }
-                    }
-
-                    while (!sr.EndOfStream)
-                    {
-                        line = sr.ReadLine();
-                        if (line.Equals("")) continue;
-                        var index = line.IndexOf(" ");
-                        if (index > 0)
-                        {
-                            var key = line.Substring(index + 1, line.Length - index - 1);
-                            if (key == "Sideboard") 
-                                continue;
-                            var value = Convert.ToDouble(line.Substring(0, index));
-                            if (definition.ContainsKey(key))
-                            {
-                                definition[key] += value;
-                            }
-                            else
-                            {
-
-                                definition.Add(key, value);
-                            }
-                        }                        
-                    }
+                    return GetDeckFromStream(entry.FullName, sr);
                 }
             }
             catch (Exception e)
@@ -276,6 +256,83 @@ namespace MtgoReplayToolWpf
                 Console.WriteLine(e.Message);
             }
 
+            return new Deck(null, new Dictionary<string, double> { }, 0, DateTime.MinValue, entry.FullName, string.Empty, false);
+        }
+
+        public static Deck GetDeckFromFile(String path)
+        {
+            try
+            {
+                using (var sr = new StreamReader(path))
+                {
+                    return GetDeckFromStream(path, sr);
+                }
+            }
+            catch (Exception e)
+            {
+                SentrySdk.CaptureException(e);
+                Console.WriteLine("The file could not be read:");
+                Console.WriteLine(e.Message);
+            }
+
+            return new Deck(null, new Dictionary<string, double> { }, 0, DateTime.MinValue, path, string.Empty, false);
+        }
+
+        private static Deck GetDeckFromStream(string path, StreamReader sr)
+        {
+            var line = String.Empty;
+            var definition = new Dictionary<String, Double>();
+            var date = new DateTime();
+            var format = String.Empty;
+            var deckName = String.Empty;
+            var manuallyEdited = false;
+
+            // Date
+            if (!sr.EndOfStream)
+            {
+                line = sr.ReadLine();
+                date = DateTime.ParseExact(line, "s", CultureInfo.InvariantCulture);
+            }
+
+            // Format
+            if (!sr.EndOfStream)
+            {
+                format = sr.ReadLine();
+            }
+
+            // Deckname
+            if (!sr.EndOfStream)
+            {
+                deckName = sr.ReadLine();
+                if (deckName.StartsWith("***"))
+                {
+                    manuallyEdited = true;
+                    deckName = deckName.Remove(0, 3);
+                }
+            }
+
+            while (!sr.EndOfStream)
+            {
+                line = sr.ReadLine();
+                if (line.Equals("")) continue;
+                var index = line.IndexOf(" ");
+                if (index > 0)
+                {
+                    var key = line.Substring(index + 1, line.Length - index - 1);
+                            if (key == "Sideboard") 
+                                continue;
+                    var value = Convert.ToDouble(line.Substring(0, index));
+                    if (definition.ContainsKey(key))
+                    {
+                        definition[key] += value;
+                    }
+                    else
+                    {
+
+                        definition.Add(key, value);
+                    }
+                }
+            }
             return new Deck(deckName, definition, 1, date, path, format, manuallyEdited);
         }
 
